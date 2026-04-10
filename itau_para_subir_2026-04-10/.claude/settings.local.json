@@ -1,0 +1,11 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebSearch",
+      "WebFetch(domain:chocale.cl)",
+      "WebFetch(domain:www.itau.cl)",
+      "WebFetch(domain:images.itau.cl)"
+    ]
+  }
+}
