@@ -1,0 +1,12 @@
+node_modules/
+.env
+.env.*
+server.js
+worker.js
+wrangler.toml
+package.json
+package-lock.json
+frontend-server.js
+test-*.js
+*.log
+assets/ruts-db.json

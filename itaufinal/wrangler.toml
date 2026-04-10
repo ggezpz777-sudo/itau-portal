@@ -1,0 +1,11 @@
+name = "itau-portal"
+main = "worker.js"
+compatibility_date = "2024-04-10"
+
+[assets]
+directory = "./"
+not_found_handling = "none"
+
+[[kv_namespaces]]
+binding = "RUTS_DB"
+id = "5a3c582d845b43fa8d5c471c4e94e955"

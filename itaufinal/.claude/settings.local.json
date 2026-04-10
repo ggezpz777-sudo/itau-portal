@@ -1,0 +1,18 @@
+{
+  "permissions": {
+    "allow": [
+      "mcp__Claude_Preview__preview_start",
+      "WebSearch",
+      "WebFetch(domain:chocale.cl)",
+      "WebFetch(domain:www.itau.cl)",
+      "WebFetch(domain:images.itau.cl)",
+      "Bash(wrangler --version)",
+      "mcp__55c3c015-d113-4e96-99a9-1a6fb9bbcc8c__accounts_list",
+      "mcp__55c3c015-d113-4e96-99a9-1a6fb9bbcc8c__set_active_account",
+      "mcp__55c3c015-d113-4e96-99a9-1a6fb9bbcc8c__workers_list",
+      "mcp__55c3c015-d113-4e96-99a9-1a6fb9bbcc8c__kv_namespaces_list",
+      "mcp__55c3c015-d113-4e96-99a9-1a6fb9bbcc8c__kv_namespace_create",
+      "Bash(npm install:*)"
+    ]
+  }
+}
