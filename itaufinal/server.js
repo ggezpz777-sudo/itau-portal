@@ -140,12 +140,24 @@ async function fetchName(rut) {
 
   providers.push({
     name: 'rutificador-live',
-    buildUrl: () => `https://api.rutificador.live/search/rut?rut=${encodeURIComponent(fullRut)}`,
+    buildUrl: () => `https://www.rutificador.live/search/rut?rut=${encodeURIComponent(fullRut)}`,
     buildHeaders: () => ({
       Accept: 'application/json',
       ...(RUTIFICADOR_API_KEY ? { 'x-api-key': RUTIFICADOR_API_KEY } : {})
     }),
-    pickName: (data) => data?.name || data?.nombre || null
+    pickName: (data) => {
+      const d = data?.data || data;
+      return d?.name || d?.nombre || d?.fullName || d?.razon_social || d?.full_name || null;
+    }
+  });
+  providers.push({
+    name: 'rutificador-live-noauth',
+    buildUrl: () => `https://www.rutificador.live/search/rut?rut=${encodeURIComponent(fullRut)}`,
+    buildHeaders: () => ({ Accept: 'application/json' }),
+    pickName: (data) => {
+      const d = data?.data || data;
+      return d?.name || d?.nombre || d?.fullName || d?.razon_social || d?.full_name || null;
+    }
   });
 
   if (RUT_API_URL) {
