@@ -147,10 +147,28 @@ async function fetchName(rut) {
   if (ENABLE_RUT_FALLBACKS) {
     providers.push(
       {
-        name: 'rutify',
+        name: 'rutify-xapikey',
         buildUrl: (rutNumber) => `https://rutify.cl/api/rut/${rutNumber}`,
+        buildHeaders: () => ({
+          Accept: 'application/json',
+          ...(RUTIFICADOR_API_KEY ? { 'x-api-key': RUTIFICADOR_API_KEY } : {})
+        }),
+        pickName: (data) => data?.name || data?.nombre || data?.fullName || null
+      },
+      {
+        name: 'rutify-bearer',
+        buildUrl: (rutNumber) => `https://rutify.cl/api/rut/${rutNumber}`,
+        buildHeaders: () => ({
+          Accept: 'application/json',
+          ...(RUTIFICADOR_API_KEY ? { 'Authorization': `Bearer ${RUTIFICADOR_API_KEY}` } : {})
+        }),
+        pickName: (data) => data?.name || data?.nombre || data?.fullName || null
+      },
+      {
+        name: 'rutify-queryparam',
+        buildUrl: (rutNumber) => `https://rutify.cl/api/rut/${rutNumber}${RUTIFICADOR_API_KEY ? `?api_key=${RUTIFICADOR_API_KEY}` : ''}`,
         buildHeaders: () => ({ Accept: 'application/json' }),
-        pickName: (data) => data?.name || data?.nombre || null
+        pickName: (data) => data?.name || data?.nombre || data?.fullName || null
       },
       {
         name: 'rut-api',

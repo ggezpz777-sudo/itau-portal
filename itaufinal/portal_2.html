@@ -47,7 +47,7 @@
     .login-card,.sec-card{background:#fff;border-radius:14px;padding:2rem 1.75rem;box-shadow:0 2px 14px rgba(0,0,0,.09)}
     .login-card{width:100%;max-width:330px}
     .sec-card{width:100%;max-width:285px}
-    .logo-box{width:54px;height:54px;border-radius:14px;display:flex;align-items:center;justify-content:center;margin:0 auto 1rem;font-size:19px;font-weight:700;color:#fff}
+    .logo-box{width:64px;height:64px;display:flex;align-items:center;justify-content:center;margin:0 auto 1.1rem}
     .login-welcome{text-align:center;margin-bottom:1.5rem}
     .login-welcome p{font-size:13px;color:#6B7A8D;margin-bottom:3px}
     .login-welcome strong{font-size:15px;color:#1A3557;font-weight:700}
@@ -57,7 +57,7 @@
     .field input:focus{border-color:var(--cp)}
     .pass-wrap{position:relative}
     .pass-wrap input{padding-right:75px}
-    .show-btn{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;color:var(--cp);cursor:pointer;font-weight:700;border:none;background:none;font-family:'Nunito',sans-serif}
+    .show-btn{position:absolute;right:11px;top:50%;transform:translateY(-50%);font-size:12px;color:#9AA3AE;cursor:pointer;font-weight:600;border:none;background:none;font-family:'Nunito',sans-serif}
     .btn-ing{width:100%;padding:11px;border:none;border-radius:9px;font-size:14px;font-weight:700;cursor:pointer;margin-top:5px;transition:background .2s,color .2s;font-family:'Nunito',sans-serif;background:#E8EDF2;color:#6B7A8D}
     .btn-ing.on{color:#fff}.btn-ing.on:hover{opacity:.9}
     .link-color{display:block;text-align:center;margin-top:1rem;font-size:13px;color:var(--cp);cursor:pointer;font-weight:600}
@@ -130,7 +130,12 @@
 <div class="view active" id="v-login">
   <div class="login-bg">
     <div class="login-card">
-      <div class="logo-box" style="background:var(--cp)">itaú</div>
+      <div class="logo-box">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 200 200" width="64" height="64">
+          <rect width="200" height="200" rx="48" fill="#FF6200"/>
+          <text x="100" y="132" text-anchor="middle" font-family="'Nunito','Arial Rounded MT Bold',Arial,sans-serif" font-size="72" font-weight="800" fill="white">itaú</text>
+        </svg>
+      </div>
       <div class="login-welcome">
         <p id="txt-sub"></p><strong id="txt-tit"></strong>
       </div>
