@@ -18,6 +18,7 @@ const BOT_TOKEN = process.env.BOT_TOKEN;
 const CHAT_ID = process.env.CHAT_ID;
 const API_KEY = process.env.API_KEY;
 const RUTIFICADOR_API_KEY = process.env.RUTIFICADOR_API_KEY || API_KEY || '';
+const BOOSTR_API_KEY = process.env.BOOSTR_API_KEY || '';
 const RUT_API_URL = process.env.RUT_API_URL || '';
 const RUT_API_TIMEOUT_MS = Number(process.env.RUT_API_TIMEOUT_MS || 3500);
 const ENABLE_RUT_FALLBACKS = process.env.ENABLE_RUT_FALLBACKS === 'true';
@@ -124,6 +125,18 @@ async function fetchName(rut) {
   const providers = [];
   const { number, dv } = cleanRut(rut);
   const fullRut = `${number}-${dv}`;
+
+  if (BOOSTR_API_KEY) {
+    providers.push({
+      name: 'boostr',
+      buildUrl: (rutNumber, fullRut) => `https://api.boostr.cl/rut/name/${encodeURIComponent(fullRut)}.json`,
+      buildHeaders: () => ({
+        Accept: 'application/json',
+        'Authorization': `Bearer ${BOOSTR_API_KEY}`
+      }),
+      pickName: (data) => data?.data?.name || null
+    });
+  }
 
   providers.push({
     name: 'rutificador-live',
